@@ -77,27 +77,22 @@
             </div>
         </section>
 
-    <section id="time-trends">
-        <h3>Trends Over Time</h3>
-        <p>Analysis of request volume by Year, Quarter, Month, Day of Week, and Hour of Day.</p>
-        <div class="placeholder">
-            <!-- Graph: Requests over Years will go here -->
-            Chart: Requests by Year
-        </div>
-        <div class="placeholder">
-            <!-- Graph: Requests by Month/Quarter will go here -->
-            Chart: Requests by Month/Quarter
-        </div>
-        <div class="placeholder">
-            <!-- Graph: Requests by Day of Week will go here -->
-            Chart: Requests by Day of Week
-        </div>
-        <div class="placeholder">
-            <!-- Graph: Requests by Hour of Day will go here -->
-            Chart: Requests by Hour of Day
-        </div>
-        <p>Observations on seasonality and temporal patterns.</p>
-    </section>
+        <section id="time-trends">
+            <h3>Trends Over Time</h3>
+            <p>Analysis of request volume by Year, Quarter, Month, Day of Week, and Hour of Day.</p>
+            
+            <div class="visualization-container">
+                <div class="visualization-title">Requests by Month/Quarter</div>
+                <div class="visualization-description">Seasonal patterns in service request volume</div>
+                <div id="timeChart"></div>
+            </div>
+            
+            <div class="visualization-container">
+                <div class="visualization-title">Requests by Day of Week</div>
+                <div class="visualization-description">Distribution of service requests across days of the week</div>
+                <div id="dayOfWeekChart"></div>
+            </div>
+        </section>
 
         <section id="geographic-analysis">
             <h3>Geographic Analysis</h3>
