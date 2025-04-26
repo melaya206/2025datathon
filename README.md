@@ -16,19 +16,19 @@ Go to https://website.comn
 
 **Kyler Tran**
 
-Email: contact@kylertran.com
+- Email: contact@kylertran.com
 
-Website: https://www.kylertran.com/
+- Website: https://www.kylertran.com/
 
-GitHub: https://github.com/kylertran
+- GitHub: https://github.com/kylertran
 
 **Melaya Madrid**
 
-Email: idk
+- Email: idk
 
 **Isabel Motta**
 
-Email: imotta@uw.edu
+- Email: imotta@uw.edu
 
 
 ## Acknowledgments
