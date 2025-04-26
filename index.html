@@ -10,7 +10,7 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
     <script src="scripts/get-data.js"></script>
-    <!--script src="scripts/distribution-by-dept.js"></script-->
+    <script src="scripts/distribution-by-dept.js"></script>
     <script src="scripts/distribution-by-area.js"></script>
     <!-- Leaflet CSS and JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -36,8 +36,7 @@
     <nav class="page-navigation">
         <div class="container">
             <button class="nav-button" onclick="document.getElementById('service-distribution').scrollIntoView({behavior: 'smooth'})">Service Distribution</button>
-            <button class="nav-button" onclick="document.getElementById('time-trends').scrollIntoView({behavior: 'smooth'})">Time Trends</button>
-            <button class="nav-button" onclick="document.getElementById('geographic-analysis').scrollIntoView({behavior: 'smooth'})">Geographic Analysis</button>
+            <button class="nav-button" onclick="document.getElementById('geographic-analysis').scrollIntoView({behavior: 'smooth'})">Geographical Analysis</button>
             <button class="nav-button" onclick="document.getElementById('meet-the-team').scrollIntoView({behavior: 'smooth'})">Meet the Team</button>
         </div>
     </nav>
@@ -55,25 +54,14 @@
             <p>Analysis of service requests by department and council district.</p>
         </section>
 
-        <section id="time-trends">
-            <h2>Trends Over Time</h2>
-            
-            <div class="visualization-container">
-                <div class="visualization-title">Requests by Month/Quarter</div>
-                <div class="visualization-description">Seasonal patterns in service request volume</div>
-                <div id="timeChart"></div>
-            </div>
-
-            <p>Analysis of request volume by Year, Quarter, Month, Day of Week, and Hour of Day.</p>
-        </section>
-
         <section id="geographic-analysis">
-            <h2>Geographic Analysis</h2>
+            <h2>Geographical Analysis</h2>
             
             <div class="visualization-container">
-                <div class="visualization-title">Service Requests Map</div>
-                <div class="visualization-description">Geographic distribution of service requests across Seattle</div>
+                <div class="visualization-title">Geographical Distribution of Service Requests</div>
+                <div class="visualization-description">Heatmap showing the distribution of service requests across Seattle</div>
                 <div id="map" style="height: 500px; width: 100%;"></div>
+                <div class="visualization-note">Note: Clicking on a marker will display the details of the service request</div>
             </div>
 
             <div class="visualization-container">
@@ -86,28 +74,6 @@
         </section>
 
         <hr>
-
-        <!--section id="data-details" class="data-details">
-            <h2>Data Details</h2>
-            <p>Key columns used in the analysis include:</p>
-            <ul>
-                <li><strong>Created Date</strong> - When the service request was created</li>
-                <li><strong>Neighborhood</strong> - Seattle neighborhood for the request location</li>
-                <li><strong>Council District</strong> - City council district for the request</li>
-                <li><strong>ZIP Code</strong> - Postal code for the request location</li>
-                <li><strong>Service Request Type</strong> - The type of service requested</li>
-                <li><strong>City Department</strong> - Department responsible for the request</li>
-                <li><strong>Latitude/Longitude</strong> - Geographic coordinates</li>
-                <li><strong>Method Received</strong> - How the request was submitted</li>
-                <li><strong>Status</strong> - Current status of the request</li>
-            </ul>
-            <p>
-                Refer to the
-                <a href="https://drive.google.com/file/d/143d4MG9lyHPS1r2JvcMDKcC4p-KZBPzA/view?usp=sharing" target="_blank">
-                    metadata document
-                </a> for full details.
-            </p>
-        </section>-->
 
         <!-- Meet the Team Section -->
         <section id="meet-the-team" class="team-section">

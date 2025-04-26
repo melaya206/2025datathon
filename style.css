@@ -209,6 +209,13 @@ h3 {
     font-size: 0.95rem;
 }
 
+.visualization-note {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
 /* Links styling */
 a {
     color: #3498db;
