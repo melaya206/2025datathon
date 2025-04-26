@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Updated Title -->
+    <title>Ctrl+Alt+Elite - Seattle Datathon Analysis</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Updated Main Heading -->
+    <h1>Ctrl+Alt+Elite: Seattle Customer Service Requests Analysis</h1>
+
+    <!-- Added Team Info Section -->
+    <div class="team-info">
+        <p>
+            <strong>Team:</strong> Ctrl+Alt+Elite<br>
+            <strong>Members:</strong> Kyler Tran, Isabel Motta, Melaya Madrid
+        </p>
+        <p>
+            This analysis was prepared for the 6th DubsTech Datathon.
+        </p>
+    </div>
+
+    <p>
+        Analysis of customer service requests submitted by Seattle residents
+        via the Customer Service Requests web portal and the Find It, Fix It
+        mobile app.
+    </p>
+    <p>
+        Data sourced from:
+        <a href="https://data.seattle.gov/City-Administration/Customer-Service-Requests/5ngg-rpne/about_data" target="_blank">
+            data.seattle.gov
+        </a>
+    </p>
+
+    <hr>
+
+    <h2>Data Analysis & Visualization</h2>
+    <p>Exploring trends and patterns within the dataset.</p>
+
+    <section id="time-trends">
+        <h3>Trends Over Time</h3>
+        <p>Analysis of request volume by Year, Quarter, Month, Day of Week, and Hour of Day.</p>
+        <div class="placeholder">
+            <!-- Graph: Requests over Years will go here -->
+            Chart: Requests by Year
+        </div>
+        <div class="placeholder">
+            <!-- Graph: Requests by Month/Quarter will go here -->
+            Chart: Requests by Month/Quarter
+        </div>
+        <div class="placeholder">
+            <!-- Graph: Requests by Day of Week will go here -->
+            Chart: Requests by Day of Week
+        </div>
+        <div class="placeholder">
+            <!-- Graph: Requests by Hour of Day will go here -->
+            Chart: Requests by Hour of Day
+        </div>
+        <p>Observations on seasonality and temporal patterns.</p>
+    </section>
+
+    <section id="geographic-analysis">
+        <h3>Geographic Analysis</h3>
+        <p>Identifying areas with the highest service requests (Neighborhoods, Council Districts, ZIP Codes).</p>
+        <div class="placeholder">
+            <!-- Map/Graph: Requests by Neighborhood will go here -->
+            Map/Chart: Requests by Neighborhood
+        </div>
+        <div class="placeholder">
+            <!-- Map/Graph: Requests by Council District will go here -->
+            Map/Chart: Requests by Council District
+        </div>
+        <p>Analysis of issue types prevalent in specific areas.</p>
+    </section>
+
+    <section id="service-types-departments">
+        <h3>Service Request Types & Departments</h3>
+        <p>Analysis of total requests by service type and responsible department.</p>
+        <div class="placeholder">
+            <!-- Graph: Requests by Service Type will go here -->
+            Chart: Requests by Service Type
+        </div>
+        <div class="placeholder">
+            <!-- Graph: Requests by Department will go here -->
+            Chart: Requests by Department
+        </div>
+        <p>Trends in specific service types over time.</p>
+    </section>
+
+    <section id="neighborhood-metric">
+        <h3>Neighborhood Performance Metric</h3>
+        <p>Description of the metric developed to rank neighborhoods based on service requests, indicating areas needing attention/resources.</p>
+        <!-- Add description of metric calculation here -->
+        <div class="placeholder">
+            <!-- Table/List: Ranked Neighborhoods will go here -->
+            Table: Neighborhood Ranking based on Metric
+        </div>
+    </section>
+
+    <hr>
+
+    <h2>Machine Learning Predictions</h2>
+    <p>Predicting future service request volumes.</p>
+
+    <section id="ml-predictions">
+        <h3>Prediction Results</h3>
+        <p>Forecasts for total service requests in the next 3 months.</p>
+        <div class="placeholder">
+            <!-- Text/Table: Predictions by Service Type will go here -->
+            Prediction: Next 3 Months by Service Type (Include Accuracy/Error)
+        </div>
+        <div class="placeholder">
+            <!-- Text/Table: Predictions by Department will go here -->
+            Prediction: Next 3 Months by Department (Include Accuracy/Error)
+        </div>
+        <div class="placeholder">
+            <!-- Text/Table: Predictions by Zip/Service Type will go here -->
+            Prediction: Next 3 Months for specific Zip/Service Type (Include Accuracy/Error)
+        </div>
+    </section>
+
+    <hr>
+
+    <h2>Data Details</h2>
+    <p>Key columns used in the analysis include:</p>
+    <ul>
+        <li>createddate</li>
+        <li>neighborhood</li>
+        <li>councildistrict</li>
+        <li>zipcode</li>
+        <li>webintakeservicerequests (Service Request Type)</li>
+        <li>departmentname (City Department)</li>
+        <li>latitude / longitude</li>
+        <li>methodreceivedname</li>
+        <li>servicerequeststatusname</li>
+    </ul>
+    <p>
+        Refer to the
+        <a href="https://drive.google.com/file/d/143d4MG9lyHPS1r2JvcMDKcC4p-KZBPzA/view?usp=sharing" target="_blank">
+            metadata document
+        </a> for full details.
+    </p>
+
+</body>
+</html>
