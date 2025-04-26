@@ -1,54 +1,197 @@
-/* Basic styling for readability - you can expand this */
+/* Modern styling for Seattle Customer Service Requests Analysis */
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
-    margin: 20px;
-}
-
-h1, h2, h3 {
+    margin: 0;
+    padding: 0;
     color: #333;
+    background-color: #f8f9fa;
 }
 
-/* Style for the new team info box */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 2rem 0;
+    margin-bottom: 0;
+    text-align: center;
+    width: 100%;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+    margin-top: 2rem;
+    font-size: 1.8rem;
+}
+
+h3 {
+    color: #2c3e50;
+    margin-top: 1.5rem;
+    font-size: 1.4rem;
+}
+
+/* Navigation buttons */
+.page-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 0;
+    padding: 20px;
+    background-color: #2c3e50;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 100%; /* Make it full width */
+    left: 0; /* Ensure it aligns to the left edge */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Ensure the container doesn't restrict the nav width */
+.container .page-navigation {
+    max-width: none;
+    margin-left: -20px; /* Offset the container padding */
+    margin-right: -20px;
+    width: calc(100% + 40px); /* Account for container padding */
+}
+
+.nav-button {
+    padding: 12px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+}
+
+.nav-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.container > p:first-of-type {
+    margin-top: 30px;
+}
+
+/* Style for the team info box */
 .team-info {
-    background-color: #eef; /* Light blue background */
-    border-left: 5px solid #007bff; /* Blue left border */
-    padding: 10px 15px;
+    background-color: #e3f2fd;
+    border-left: 5px solid #2196f3;
+    padding: 15px 20px;
     margin: 20px 0;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .team-info p {
-    margin: 5px 0; /* Adjust spacing inside the box */
+    margin: 8px 0;
 }
 
-.placeholder {
-    border: 1px dashed #ccc;
-    padding: 15px;
-    margin: 15px 0;
-    background-color: #f9f9f9;
-    color: #777;
+/* Visualization containers */
+.visualization-container {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    min-height: 650px;
     text-align: center;
 }
 
-a {
-    color: #007bff;
+.visualization-title {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
 }
 
+.visualization-description {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+/* Links styling */
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Section dividers */
 hr {
     border: 0;
     height: 1px;
-    background: #ddd;
-    margin: 30px 0;
+    background: #e0e0e0;
+    margin: 40px 0;
 }
 
 section {
-    margin-bottom: 25px;
+    margin-bottom: 40px;
 }
 
+/* Lists styling */
 ul {
     padding-left: 20px;
 }
 
 li {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+}
+
+/* Data details section */
+.data-details {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 30px;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    text-align: center;
+}
+
+/* Error message */
+.error-message {
+    color: #e74c3c;
+    padding: 15px;
+    background-color: #fdecea;
+    border-left: 4px solid #e74c3c;
+    margin: 15px 0;
 }
