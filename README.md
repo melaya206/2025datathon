@@ -1,4 +1,4 @@
-# 2025 Datathon - Ctrl Alt Elite
+# DubsTech Datathon 2025 | Ctrl+Alt+Elite
 
 Prompt: Customer Service Requests
 
@@ -10,7 +10,7 @@ Download the repository via GitHubs web interface or by cloning:
 
 ## Usage
 
-Go to https://website.comn
+Go to https://website.com
     
 ## Contact the Authors
 
@@ -24,12 +24,20 @@ Go to https://website.comn
 
 **Melaya Madrid**
 
-- Email: idk
+- Email: lamamel@uw.edu
+
+- GitHub: https://github.com/melaya206
+
+- LinkedIn: https://www.linkedin.com/in/melaya/
 
 **Isabel Motta**
 
 - Email: imotta@uw.edu
 
+- GitHub: https://github.com/IsabelMotta
+
+- LinkedIn: https://www.linkedin.com/in/isabel-motta/
 
 ## Acknowledgments
 - [Plotly.js](https://plotly.com/javascript/3d-charts/)
+- [Leaflet.js](https://leafletjs.com/)

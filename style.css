@@ -251,22 +251,42 @@ li {
     margin-top: 30px;
 }
 
-/* Loading indicator */
+/* Map styling */
+#map {
+    height: 500px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
 .loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1.2rem;
+    color: #555;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
-    color: #666;
-    font-style: italic;
-    background-color: #f9f9f9;
-    border-radius: 4px;
-    border: 1px solid #eee;
     text-align: center;
 }
 
-/* Error message */
 .error-message {
-    color: #e74c3c;
-    padding: 15px;
-    background-color: #fdecea;
-    border-left: 4px solid #e74c3c;
-    margin: 15px 0;
+    color: #d9534f;
+    padding: 20px;
+    text-align: center;
+    background-color: #f8d7da;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+/* Leaflet popup customization */
+.leaflet-popup-content {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.leaflet-popup-content strong {
+    color: #2c3e50;
 }
