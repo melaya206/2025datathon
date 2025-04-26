@@ -16,7 +16,8 @@
 <body>
     <header>
         <div class="container">
-            <h1>Ctrl+Alt+Elite: Seattle Customer Service Requests Analysis</h1>
+            <h1 class="header-title">Seattle Customer Service Requests Analysis</h1>
+            <h3 class="header-subtitle">Ctrl+Alt+Elite | Datathon 2025</h3>
         </div>
     </header>
 
@@ -26,42 +27,13 @@
             <button class="nav-button" onclick="document.getElementById('service-distribution').scrollIntoView({behavior: 'smooth'})">Service Distribution</button>
             <button class="nav-button" onclick="document.getElementById('time-trends').scrollIntoView({behavior: 'smooth'})">Time Trends</button>
             <button class="nav-button" onclick="document.getElementById('geographic-analysis').scrollIntoView({behavior: 'smooth'})">Geographic Analysis</button>
-            <button class="nav-button" onclick="document.getElementById('ml-predictions').scrollIntoView({behavior: 'smooth'})">Predictions</button>
-            <button class="nav-button" onclick="document.getElementById('data-details').scrollIntoView({behavior: 'smooth'})">Data Details</button>
+            <button class="nav-button" onclick="document.getElementById('meet-the-team').scrollIntoView({behavior: 'smooth'})">Meet the Team</button>
         </div>
     </nav>
 
     <div class="container">
-        <!-- Team Info Section -->
-        <div class="team-info">
-            <p>
-                <strong>Team:</strong> Ctrl+Alt+Elite<br>
-                <strong>Members:</strong> Kyler Tran, Isabel Motta, Melaya Madrid
-            </p>
-            <p>
-                This analysis was prepared for the 6th DubsTech Datathon.
-            </p>
-        </div>
-
-        <p>
-            Analysis of customer service requests submitted by Seattle residents
-            via the Customer Service Requests web portal and the Find It, Fix It
-            mobile app.
-        </p>
-        <p>
-            Data sourced from:
-            <a href="https://data.seattle.gov/City-Administration/Customer-Service-Requests/5ngg-rpne/about_data" target="_blank">
-                data.seattle.gov
-            </a>
-        </p>
-
-        <hr>
-
-        <h2>Data Analysis & Visualization</h2>
-        <p>Exploring trends and patterns within the Seattle Customer Service Requests dataset.</p>
-
         <section id="service-distribution">
-            <h3>Service Request Distribution</h3>
+            <h2>Service Request Distribution</h2>
             <p>Analysis of service requests by department and council district.</p>
             
             <div class="visualization-container">
@@ -69,16 +41,10 @@
                 <div class="visualization-description">Heatmap showing the distribution of service requests across city departments and council districts</div>
                 <div id="barChart"></div>
             </div>
-            
-            <div class="visualization-container">
-                <div class="visualization-title">Service Type Distribution</div>
-                <div class="visualization-description">Analysis of most common service request types</div>
-                <div id="serviceTypeChart"></div>
-            </div>
         </section>
 
         <section id="time-trends">
-            <h3>Trends Over Time</h3>
+            <h2>Trends Over Time</h2>
             <p>Analysis of request volume by Year, Quarter, Month, Day of Week, and Hour of Day.</p>
             
             <div class="visualization-container">
@@ -86,16 +52,10 @@
                 <div class="visualization-description">Seasonal patterns in service request volume</div>
                 <div id="timeChart"></div>
             </div>
-            
-            <div class="visualization-container">
-                <div class="visualization-title">Requests by Day of Week</div>
-                <div class="visualization-description">Distribution of service requests across days of the week</div>
-                <div id="dayOfWeekChart"></div>
-            </div>
         </section>
 
         <section id="geographic-analysis">
-            <h3>Geographic Analysis</h3>
+            <h2>Geographic Analysis</h2>
             <p>Identifying areas with the highest service requests (Neighborhoods, Council Districts, ZIP Codes).</p>
             
             <div class="visualization-container">
@@ -103,33 +63,11 @@
                 <div class="visualization-description">Geographic distribution of service requests across Seattle neighborhoods</div>
                 <div id="neighborhoodChart"></div>
             </div>
-            
-            <div class="visualization-container">
-                <div class="visualization-title">Requests by Council District</div>
-                <div class="visualization-description">Analysis of service request volume by council district</div>
-                <div id="districtChart"></div>
-            </div>
         </section>
 
         <hr>
 
-        <h2>Machine Learning Predictions</h2>
-        <p>Predicting future service request volumes based on historical patterns.</p>
-
-        <section id="ml-predictions">
-            <h3>Prediction Results</h3>
-            <p>Forecasts for total service requests in the next 3 months.</p>
-            
-            <div class="visualization-container">
-                <div class="visualization-title">Future Service Request Predictions</div>
-                <div class="visualization-description">Forecasted volume of service requests by type for the next quarter</div>
-                <div id="predictionChart"></div>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="data-details" class="data-details">
+        <!--section id="data-details" class="data-details">
             <h2>Data Details</h2>
             <p>Key columns used in the analysis include:</p>
             <ul>
@@ -149,7 +87,51 @@
                     metadata document
                 </a> for full details.
             </p>
+        </section>-->
+
+        <!-- Meet the Team Section -->
+        <section id="meet-the-team" class="team-section">
+            <div class="container">
+                <h2 style="margin-bottom: 50px;">Meet the Team</h2>
+                
+                <div class="team-container">
+                    <div class="team-member">
+                        <img src="resources/melaya-madrid.png" alt="Melaya Madrid" class="team-member-image">
+                        <h3>Melaya Madrid</h3>
+                        <p class="role">Informatics Undergraduate</p>
+                        <p>Focused on data analysis and visualization</p>
+                        <div class="contact">
+                            <a href="mailto:lamamel@uw.edu">Email</a> | 
+                            <a href="https://www.linkedin.com/in/melaya/" target="_blank">LinkedIn</a>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <img src="resources/isabel-motta.png" alt="Isabel Motta" class="team-member-image">
+                        <h3>Isabel Motta</h3>
+                        <p class="role">Psychology Undergraduate</p>
+                        <p>Focused on statistical analysis and data visualization</p>
+                        <div class="contact">
+                            <a href="mailto:imotta@uw.edu">Email</a> | 
+                            <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <img src="resources/kyler-tran.png" alt="Kyler Tran" class="team-member-image">
+                        <h3>Kyler Tran</h3>
+                        <p class="role">Infrastructure Engineer</p>
+                        <p>Full-stack developer with expertise in data visualization</p>
+                        <div class="contact">
+                            <a href="mailto:contact@kylerzinbox.com">Email</a> | 
+                            <a href="https://www.linkedin.com/in/kyler-tran/" target="_blank">LinkedIn</a> |
+                            <a href="https://kylertran.com" target="_blank">Portfolio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
+        <hr><hr><hr>
     </div>
 </body>
 </html>

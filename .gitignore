@@ -1,15 +1,2 @@
-# Ignore large data files
+# Ignore the large dataset
 dataset/Customer_Service_Requests_20250426.csv
-
-# Ignore common system files
-.DS_Store
-Thumbs.db
-
-# Ignore node modules if you're using npm
-node_modules/
-
-# Ignore any log files
-*.log
-
-# Ignore environment files that might contain secrets
-.env
