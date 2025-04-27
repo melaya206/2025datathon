@@ -83,6 +83,12 @@ function processMapData(data) {
             loadingIndicator.innerHTML = 'Processing map data...';
         }
         
+        // Store all data globally for filtering
+        allMapData = [...data];
+        
+        // Initialize the searchable dropdown for neighborhoods
+        initSearchableDropdown('request-neighborhood-filter', data, 'neighborhood', filterMapByNeighborhood);
+        
         // Filter out records without valid coordinates
         const validData = data.filter(d => {
             // Check if latitude and longitude exist and are valid numbers
@@ -176,6 +182,67 @@ function processMapData(data) {
     }
 }
 
+/**
+ * Filter the map data based on the selected neighborhood
+ */
+function filterMapByNeighborhood() {
+    const selectedNeighborhood = getSelectedValue('request-neighborhood-filter');
+    
+    console.log(`Filtering map by neighborhood: ${selectedNeighborhood}`);
+    
+    try {
+        // Show loading indicator
+        const loadingIndicator = document.getElementById('map-loading-indicator');
+        if (loadingIndicator) {
+            loadingIndicator.style.display = 'flex';
+            loadingIndicator.innerHTML = 'Updating map...';
+        }
+        
+        // Filter the data based on the selected neighborhood
+        let filteredData;
+        if (selectedNeighborhood === 'all') {
+            filteredData = [...allMapData];
+        } else {
+            // Use the correct field name from the dataset (neighborhood)
+            filteredData = allMapData.filter(d => d.neighborhood === selectedNeighborhood);
+        }
+        
+        console.log(`Filtered to ${filteredData.length} records`);
+        
+        // Process the filtered data
+        const validData = filteredData.filter(d => {
+            return d.Latitude && d.Longitude && 
+                !isNaN(parseFloat(d.Latitude)) && 
+                !isNaN(parseFloat(d.Longitude));
+        });
+        
+        if (validData.length === 0) {
+            console.log("No valid data after filtering");
+            if (loadingIndicator) {
+                loadingIndicator.innerHTML = 'No data available for the selected neighborhood';
+            }
+            return;
+        }
+        
+        // Limit to a reasonable number of points for performance
+        const displayData = validData.slice(0, 2000);
+        
+        // Update the map visualization
+        createMapVisualization(displayData, 'Latitude', 'Longitude');
+        
+        // Hide loading indicator
+        if (loadingIndicator) {
+            loadingIndicator.style.display = 'none';
+        }
+    } catch (error) {
+        console.error("Error filtering map data:", error);
+        const loadingIndicator = document.getElementById('map-loading-indicator');
+        if (loadingIndicator) {
+            loadingIndicator.innerHTML = 'Error filtering data: ' + error.message;
+        }
+    }
+}
+
 function createMapVisualization(data, latField, lngField) {
     try {
         console.log(`Creating visualization with fields: ${latField}, ${lngField}`);
@@ -197,12 +264,11 @@ function createMapVisualization(data, latField, lngField) {
                 
                 // Create popup content with request details
                 const popupContent = `
-                    <strong>Request Type:</strong> ${d.webintakeservicerequests || d["Service Request Type"] || 'Not specified'}<br>
+                    <strong>Neighborhood:</strong> ${d.neighborhood || 'Not specified'}<br>
                     <strong>Department:</strong> ${d.departmentname || d["City Department"] || 'Not specified'}<br>
                     <strong>Status:</strong> ${d.servicerequeststatusname || d.Status || 'Not specified'}<br>
                     <strong>Created:</strong> ${d.createddate || d["Created Date"] || 'Not specified'}<br>
                     <strong>Method:</strong> ${d.methodreceivedname || d["Method Received"] || 'Not specified'}<br>
-                    <strong>Neighborhood:</strong> ${d.neighborhood || d.Neighborhood || 'Not specified'}<br>
                     <strong>ZIP Code:</strong> ${d.zipcode || d["ZIP Code"] || 'Not specified'}
                 `;
                 

@@ -1,6 +1,6 @@
 /**
  * searchable-dropdown.js
- * Handles the searchable dropdown functionality for filtering service requests
+ * Handles the searchable dropdown functionality for filtering service requests by neighborhood
  */
 
 // Global instance of Choices.js
@@ -32,7 +32,7 @@ function initSearchableDropdown(elementId, data, fieldName, onChangeCallback) {
         
         // Prepare choices options
         const choicesOptions = [
-            { value: 'all', label: 'All Request Types' },
+            { value: 'all', label: 'All neighborhoods' },
             ...uniqueValues.map(value => ({ value: value, label: value }))
         ];
         
@@ -45,12 +45,12 @@ function initSearchableDropdown(elementId, data, fieldName, onChangeCallback) {
         choicesInstance = new Choices(dropdown, {
             choices: choicesOptions,
             searchEnabled: true,
-            searchPlaceholderValue: 'Search request types...',
+            searchPlaceholderValue: 'Search neighborhoods...',
             itemSelectText: '',
             shouldSort: false, // We've already sorted the array
             position: 'bottom',
             placeholder: true,
-            placeholderValue: 'Select a request type',
+            placeholderValue: 'Select a neighborhood',
             classNames: {
                 containerOuter: 'choices filter-dropdown'
             }

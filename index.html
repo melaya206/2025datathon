@@ -30,20 +30,36 @@
     <!-- Custom styles to fix z-index issues with Choices.js -->
     <style>
         /* Force header to be above everything */
-        header {
+        body > header {
             position: relative;
-            z-index: 9999 !important;
+            z-index: 99999 !important; /* Extremely high z-index */
         }
         
-        /* Force Choices.js dropdown to be below header */
+        /* Force navigation to be below header but above everything else */
+        .page-navigation {
+            position: sticky;
+            z-index: 99998 !important; /* Very high z-index */
+        }
+        
+        /* Force Choices.js dropdown to be below header and navigation */
         .choices__list--dropdown {
-            z-index: 5000 !important;
+            z-index: 5000 !important; /* Lower than header and navigation */
         }
         
         /* Fix for Choices.js dropdown appearing above header */
         .choices {
             position: relative;
-            z-index: 5000 !important;
+            z-index: 5000 !important; /* Lower than header and navigation */
+        }
+        
+        /* Force map to be below dropdown */
+        #map, .map-container, .leaflet-container {
+            z-index: 1000 !important; /* Lower than dropdown */
+        }
+        
+        /* Ensure all other content is below header */
+        main, section, .visualization-container {
+            z-index: 1 !important;
         }
     </style>
 </head>
@@ -103,56 +119,29 @@
                 <div class="visualization-title">Geographical Distribution of Service Requests</div>
                 <div class="visualization-description">Heatmap showing the distribution of service requests across Seattle</div>
                 <div class="filter-container">
-                    <label for="request-type-filter">Filter by Request Type: </label>
-                    <select id="request-type-filter" class="filter-dropdown">
-                        <option value="all">All Request Types</option>
-                        <option value="Parking Enforcement">Parking Enforcement</option>
-                        <option value="General Inquiry - City Light">General Inquiry - City Light</option>
-                        <option value="Street Sign and Traffic Signal Maintenance">Street Sign and Traffic Signal Maintenance</option>
-                        <option value="Illegal Dumping / Needles">Illegal Dumping / Needles</option>
-                        <option value="General Inquiry - Police Department">General Inquiry - Police Department</option>
-                        <option value="Streetlight Maintenance">Streetlight Maintenance</option>
-                        <option value="General Inquiry - Customer Service Bureau">General Inquiry - Customer Service Bureau</option>
-                        <option value="Clogged Storm Drain">Clogged Storm Drain</option>
-                        <option value="General Inquiry - Animal Shelter">General Inquiry - Animal Shelter</option>
-                        <option value="Pothole">Pothole</option>
-                        <option value="Overgrown Vegetation">Overgrown Vegetation</option>
-                        <option value="Graffiti">Graffiti</option>
-                        <option value="Dead Animal">Dead Animal</option>
-                        <option value="Business Related Complaint">Business Related Complaint</option>
-                        <option value="Internet/Cable Issue">Internet/Cable Issue</option>
-                        <option value="Damaged Sidewalk">Damaged Sidewalk</option>
-                        <option value="Business Violation of Public Health Requirements">Business Violation of Public Health Requirements</option>
-                        <option value="General Inquiry - Public Utilities">General Inquiry - Public Utilities</option>
-                        <option value="Scooter or Bike Share Issue">Scooter or Bike Share Issue</option>
-                        <option value="General Inquiry - Transportation">General Inquiry - Transportation</option>
-                        <option value="Nightlife Noise Complaint">Nightlife Noise Complaint</option>
-                        <option value="Towing Impound Complaint">Towing Impound Complaint</option>
-                        <option value="Abandoned Vehicle">Abandoned Vehicle</option>
-                        <option value="Animal Noise">Animal Noise</option>
-                        <option value="Seattle Center">Seattle Center</option>
-                        <option value="Taxi, TNC, or Limousine Complaint or Compliment">Taxi, TNC, or Limousine Complaint or Compliment</option>
-                        <option value="Pollution Report Form">Pollution Report Form</option>
-                        <option value="ADA Request (Transportation)">ADA Request (Transportation)</option>
-                        <option value="Wireless or Small Cell Issue">Wireless or Small Cell Issue</option>
-                        <option value="Safe Routes to School">Safe Routes to School</option>
-                        <option value="Traffic Calming">Traffic Calming</option>
-                        <option value="Public Garage or Parking Lot Complaint">Public Garage or Parking Lot Complaint</option>
-                        <option value="Parks and Recreation Maintenance">Parks and Recreation Maintenance</option>
-                        <option value="Public Litter and Recycling Cans">Public Litter and Recycling Cans</option>
-                        <option value="Public Utilities Direct Mail Opt Out">Public Utilities Direct Mail Opt Out</option>
-                        <option value="Towing Complaint - Public Impound">Towing Complaint - Public Impound</option>
-                        <option value="Abandoned Vehicle/72hr Parking Ordinance">Abandoned Vehicle/72hr Parking Ordinance</option>
-                        <option value="Unauthorized Encampment">Unauthorized Encampment</option>
-                        <option value="Feedback about the Customer Service Requests Portal">Feedback about the Customer Service Requests Portal</option>
-                        <option value="Feedback about the Find It, Fix It mobile app">Feedback about the Find It, Fix It mobile app</option>
-                        <option value="Found a Pet">Found a Pet</option>
-                        <option value="Lost a Pet">Lost a Pet</option>
-                        <option value="Street Sign Maintenance">Street Sign Maintenance</option>
-                        <option value="Traffic Signal Maintenance">Traffic Signal Maintenance</option>
-                        <option value="Snow and Ice">Snow and Ice</option>
-                        <option value="Nuisance dogs in a park">Nuisance dogs in a park</option>
-                        <option value="Bicycle Facility Maintenance">Bicycle Facility Maintenance</option>
+                    <label for="request-neighborhood-filter">Filter by neighborhood: </label>
+                    <select id="request-neighborhood-filter" class="filter-dropdown">
+                        <option value="all">All neighborhoods</option>
+                        <option value="Downtown">Downtown</option>
+                        <option value="Capitol Hill">Capitol Hill</option>
+                        <option value="Ballard">Ballard</option>
+                        <option value="Queen Anne">Queen Anne</option>
+                        <option value="University District">University District</option>
+                        <option value="Fremont">Fremont</option>
+                        <option value="West Seattle">West Seattle</option>
+                        <option value="Central District">Central District</option>
+                        <option value="Rainier Valley">Rainier Valley</option>
+                        <option value="Beacon Hill">Beacon Hill</option>
+                        <option value="Greenwood">Greenwood</option>
+                        <option value="Wallingford">Wallingford</option>
+                        <option value="Northgate">Northgate</option>
+                        <option value="Columbia City">Columbia City</option>
+                        <option value="South Lake Union">South Lake Union</option>
+                        <option value="Magnolia">Magnolia</option>
+                        <option value="Green Lake">Green Lake</option>
+                        <option value="Ravenna">Ravenna</option>
+                        <option value="Belltown">Belltown</option>
+                        <option value="International District">International District</option>
                     </select>
                 </div>
                 

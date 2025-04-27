@@ -17,10 +17,12 @@ body {
 header {
     background-color: lightblue;
     color: #21175a;
-    padding: 20px 0;
+    margin-bottom: 0;
     text-align: center;
+    width: 100%;
+    padding: 20px 0;
     position: relative;
-    z-index: 9999 !important; /* Extremely high z-index to ensure it's above everything */
+    z-index: 2000; /* Higher than the dropdown */
 }
 
 .header-title {
@@ -62,7 +64,7 @@ h3 {
     background-color: #21175a;
     position: sticky;
     top: 0;
-    z-index: 9998 !important; /* Very high z-index, just below header */
+    z-index: 100;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     width: 100%; /* Make it full width */
     left: 0; /* Ensure it aligns to the left edge */
@@ -258,12 +260,10 @@ h3 {
     text-align: left;
     padding: 4px 10px;
     position: relative;
-    z-index: 1500; /* Lower than header and navigation */
+    z-index: 1500; /* Higher than the map but lower than the header */
 }
 
 .filter-dropdown {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
     border-radius: 4px;
     background-color: white;
     font-size: 1rem;
@@ -272,18 +272,14 @@ h3 {
     cursor: pointer;
 }
 
-/* Override Choices.js z-index settings */
+/* Ensure Choices.js dropdown appears above the map but below the header */
 .choices {
-    position: relative !important;
-    z-index: 1500 !important; /* Lower than header and navigation */
+    position: relative;
+    z-index: 1500 !important; /* Higher than the map but lower than the header */
 }
 
 .choices__list--dropdown {
-    z-index: 1600 !important; /* Lower than header and navigation */
-}
-
-.choices__list--dropdown .choices__list {
-    max-height: 300px !important; /* Limit height of dropdown */
+    z-index: 1600 !important; /* Even higher for the dropdown but still below header */
 }
 
 .filter-dropdown:focus {
