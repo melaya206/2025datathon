@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ctrl+Alt+Elite - Seattle Datathon Analysis</title>
+    <title>Sea Stats</title>
     <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="style.css">
     <!-- Link to the external libraries -->
@@ -124,7 +124,7 @@
     <!-- Page navigation -->
     <nav class="page-navigation">
         <div class="container">
-            <img class="logo" src="resources/ctrl+alt+elite-alt.png" alt="Logo">
+            <img class="logo" src="resources/ctrl+alt+elite.png" alt="Logo">
             <div class="nav-buttons-container">
                 <button class="nav-button"
                     onclick="document.getElementById('introduction').scrollIntoView({behavior: 'smooth'})">Introduction</button>
@@ -162,7 +162,7 @@
         <section id="dept-visualization-section">
             <h2>Department Service Requests by Year</h2>
 
-            <body>
+            <p class="section-description">
                 This 3D line plot illustrates the volume of customer service requests handled by each Seattle city
                 department annually from 2021 to early 2025. Each department is represented by a distinct colored line,
                 allowing for clear comparison of service demand patterns over time. The x-axis displays the different
@@ -170,8 +170,9 @@
                 number of customer service requests received during each time period, with higher values indicating
                 greater service demand. This interactive visualization enables stakeholders to identify trends, compare
                 departmental workloads, and analyze how service request volumes have evolved across different
-                departments during this four-year period. Clicking on a department in the key will toggle the visibility of that department's line. 
-            </body>
+                departments during this four-year period. Clicking on a department in the key will toggle the visibility
+                of that department's line.
+            </p>
 
             <div class="data-visualization">
                 <div id="3d-line-plot" style="height: 600px; width: 100%;"></div>
@@ -182,14 +183,14 @@
         <section id="service-distribution">
             <h2>Service Request Distribution</h2>
 
-            <body>
+            <p class="section-description">
                 This visualization shows total number of customer service requests submitted to the City of Seattle,
                 categorized by service type, from January 2021 through early April 2025, with rankings for each month.
                 Each service type is represented by unique trend bar, allowing easy comparison over time.
                 On the y-axis are rankings of the most requested service during the selected month with rank #1
                 being the most requested service. The x-axis shows a running sum of the total number of requests
                 sent overall. This visualization is used to inform trends for each service type.
-            </body>
+            </p>
 
             <div class="visualization-container">
                 <div class="visualization-title">Customer Service Request Distribution Over 4 Years</div>
@@ -387,8 +388,22 @@
                 <div class="visualization-note">Note: Clicking on a marker will display the details of the service
                     request</div>
                 <h3 style="text-align: left;">Analysis</h3>
+
+                <p class="section-description" style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    The geographical heat map aligns closely with Seattle’s population‐density pattern: the brightest
+                    hotspots—Downtown/Central Business District, Capitol Hill, University District and Belltown—are also
+                    the city’s densest neighborhoods. In these areas, high foot traffic and resident counts naturally
+                    drive up service‐request volume. South Lake Union and Fremont, though slightly less residential,
+                    also glow intensely—indicating that rapid commercial development and construction further amplify
+                    demand beyond what population alone would predict. In contrast, low‐density outlying neighborhoods
+                    like Broadview, North Beach/Blue Ridge and Fauntleroy show sparse requests, mirroring their smaller
+                    resident bases. A few mid-density areas (e.g. Rainier Beach, North Beacon Hill) reveal pronounced
+                    summer peaks—suggesting that seasonal population surges (tourism, events) can temporarily elevate
+                    service needs. Overall, this comparison shows that while raw population density is the primary
+                    driver of request volume, non-residential activity and seasonal flows create noteworthy deviations
+                </p>
                 <div style="text-align: left;">
-    
+
                 </div>
             </div>
         </section>
@@ -401,7 +416,46 @@
                     requests to ensure data quality. For visualization, we built this interactive webpage using HTML,
                     CSS, and JavaScript. Tableau was used to create dynamic dashboards, while Leaflet enabled us to map
                     service requests geographically across Seattle. Additionally, we leveraged Plotly to develop 3D
-                    visualizations, highlighting trends by department and council district.</p>
+                    visualizations, highlighting trends by department and council district.
+                </p>
+                <h3 style="text-align: left;">Clean the Data</h3>
+                <p class="section-description" style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    Filter out any rows flagged as duplicates. Overwrite the cleaned data frame and run glimpse() to
+                    confirm the duplicate rows are gone.
+                </p>
+                <img class="code-screenshot" src="resources/code-screenshots/clean_up_data.png" alt="Code Screenshot">
+                <h3 style="text-align: left;">Select Relevant Features</h3>
+                <p class="section-description" style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    Streamline the data by subsetting the cleaned frame to include only the essential fields—Service
+                    Request Type, City Department, Date Created, Location, Service Request Number, Latitude, Longitude,
+                    ZIP Code, Police Precinct, and Neighborhood—overwrite the existing object, then run glimpse() to
+                    confirm that only those columns remain.
+                </p>
+                <img class="code-screenshot" src="resources/code-screenshots/select_relevant_features.png" alt="Code Screenshot">
+                <h3 style="text-align: left;">Create New Features</h3>
+                <p class="section-description" style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    Split the original Date Created character string into two new columns—Date (as a Date object) and
+                    Time (as a time or POSIXct)—to easily aggregate and plot by day, hour, etc. Overwrite the data frame
+                    and run glimpse() to check these new fields, which will ensure our Tableau histogram‐race animation
+                    can smoothly step through each time bucket.
+                </p>
+                <img class="code-screenshot" src="resources/code-screenshots/create_features.png" alt="Code Screenshot">
+                <h3 style="text-align: left;">Create New Files</h3>
+                <p class="section-description" style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    For each distinct neighborhood, take the 2,000 most recent requests, create a separate data frame,
+                    and write it out as a CSV (e.g. Capitol_Hill.csv). These per-neighborhood CSVs will simplify
+                    building the Geographical Distribution of Service Requests heat map.
+                </p>
+                <img class="code-screenshot" src="resources/code-screenshots/create_files.png" alt="Code Screenshot">
+                <h3 style="text-align: left;">Aggregate Annual Departmental Requests</h3>
+                <p class="section-description" style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    Parse each request’s timestamp into a proper date‐time object and use lubridate to pull out the
+                    calendar year. Group the cleaned dataset by City Department and Year, and tallied the number of
+                    requests in each group with dplyr’s count() function. This produced a tidy summary table—one row per
+                    department‐year with its total requests—which we then fed into our 3D line plot, allowing us to
+                    trace each department’s workload trajectory over time in three dimensions.
+                </p>
+                <img class="code-screenshot" src="resources/code-screenshots/aggregate_dept_requests.png" alt="Code Screenshot">
                 <center>
                     <h3>Tools Utilized</h3>
                     <img class="tool-logo" src="resources/logos/js.png" alt="JavaScript Logo">
@@ -417,7 +471,7 @@
         <section id="meet-the-team" class="team-section">
             <h2 style="margin-bottom: 50px;">Meet the Team</h2>
             <div class="team-container">
-                <img src="resources/ctrl+alt+elite-alt.png" alt="Logo" class="logo-big">
+                <img src="resources/ctrl+alt+elite.png" alt="Logo" class="logo-big">
                 <div class="team-member">
                     <img src="resources/headshots/melaya-madrid.png" alt="Melaya La Madrid" class="team-member-image">
                     <h3>Melaya La Madrid</h3>

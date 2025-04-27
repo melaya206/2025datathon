@@ -521,10 +521,6 @@ li {
     margin-top: 30px;
 }
 
-.data-visualization {
-
-}
-
 /* Map styling */
 #map {
     height: 500px;
@@ -563,6 +559,12 @@ li {
 
 .leaflet-popup-content strong {
     color: #2c3e50;
+}
+
+.code-screenshot {
+    max-width: 600px;
+    height: auto;
+    margin: 20px 0;
 }
 
 /* Footer styling */
