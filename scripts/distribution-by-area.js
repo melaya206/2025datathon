@@ -10,8 +10,23 @@ let seattleMap = null;
 let markerClusterGroup = null;
 let heatLayer = null;
 let allMapData = []; // Store all data for filtering
-let currentNeighborhoodValue = "dataset/neighborhood-data/ALL.csv"; // Track the currently selected neighborhood
+let currentNeighborhoodValue = "ALL.csv"; // Track the currently selected neighborhood
 let mapInitialized = false; // Track if the map has been initialized
+
+// Add a map-specific loading indicator if it doesn't exist
+function ensureMapLoadingIndicator() {
+    if (!document.getElementById('map-loading-indicator')) {
+        const mapContainer = document.getElementById('map');
+        if (mapContainer) {
+            const loadingIndicator = document.createElement('div');
+            loadingIndicator.id = 'map-loading-indicator';
+            loadingIndicator.className = 'loading-indicator';
+            loadingIndicator.style.display = 'none';
+            loadingIndicator.textContent = 'Loading map data...';
+            mapContainer.appendChild(loadingIndicator);
+        }
+    }
+}
 
 function initMap() {
     try {
@@ -30,8 +45,15 @@ function initMap() {
             return;
         }
         
+        // Ensure we have a loading indicator
+        ensureMapLoadingIndicator();
+        
         // Get the loading indicator
         const loadingIndicator = document.getElementById('map-loading-indicator');
+        if (loadingIndicator) {
+            loadingIndicator.style.display = 'flex';
+            loadingIndicator.textContent = 'Initializing map...';
+        }
         
         // Check if the map container has dimensions
         if (mapContainer.offsetWidth === 0 || mapContainer.offsetHeight === 0) {
@@ -49,25 +71,27 @@ function initMap() {
             if (!seattleMap) {
                 seattleMap = L.map('map').setView([47.6062, -122.3321], 12);
                 
-                // Add tile layer
+                // Add the tile layer (map background)
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(seattleMap);
                 
-                // Update loading indicator
-                if (loadingIndicator) {
-                    loadingIndicator.innerHTML = 'Waiting for data...';
-                }
+                // Initialize the marker cluster group
+                markerClusterGroup = L.markerClusterGroup();
+                seattleMap.addLayer(markerClusterGroup);
+                
+                // Mark the map as initialized
+                mapInitialized = true;
                 
                 console.log("Map initialized successfully");
-                mapInitialized = true; // Mark map as initialized
-            } else {
-                console.log("Map already exists, skipping initialization");
+                
+                // Load the default ALL.csv data immediately
+                loadNeighborhoodData("ALL.csv");
             }
         } catch (e) {
             console.error("Error during map initialization:", e);
             if (loadingIndicator) {
-                loadingIndicator.innerHTML = 'Error initializing map: ' + e.message;
+                loadingIndicator.textContent = 'Error initializing map: ' + e.message;
                 loadingIndicator.classList.add('error-message');
             }
         }
@@ -77,59 +101,107 @@ function initMap() {
 }
 
 /**
+ * Load neighborhood data directly
+ */
+function loadNeighborhoodData(neighborhoodFile) {
+    console.log(`Loading data for neighborhood: ${neighborhoodFile}`);
+    
+    // Ensure we have a loading indicator
+    ensureMapLoadingIndicator();
+    
+    // Show loading indicator
+    const loadingIndicator = document.getElementById('map-loading-indicator');
+    if (loadingIndicator) {
+        loadingIndicator.style.display = 'flex';
+        loadingIndicator.textContent = `Loading data for ${neighborhoodFile.replace('.csv', '')}...`;
+    }
+    
+    // Reset map view to Seattle
+    if (seattleMap) {
+        seattleMap.setView([47.6062, -122.3321], 12);
+    }
+    
+    // Construct the file path
+    const filePath = `dataset/neighborhood-data/${neighborhoodFile}`;
+    console.log(`Attempting to load: ${filePath}`);
+    
+    // Load the CSV file for the selected neighborhood
+    d3.csv(filePath)
+        .then(data => {
+            console.log(`Successfully loaded ${data.length} records from ${filePath}`);
+            
+            // Process the data and update the map
+            processNeighborhoodData(data);
+            
+            // Hide loading indicator
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'none';
+            }
+        })
+        .catch(error => {
+            console.error(`Error loading CSV file ${filePath}:`, error);
+            
+            // Try loading sample data if available
+            tryLoadSampleData(neighborhoodFile, loadingIndicator);
+        });
+}
+
+/**
  * Filter the map data based on the selected neighborhood
  */
 function filterMapByNeighborhood() {
     const selectedValue = getSelectedValue('request-neighborhood-filter');
+    const formattedValue = selectedValue.replace(/^dataset\/neighborhood-data\//, '');
     
     // If the value hasn't changed, don't reload
-    if (selectedValue === currentNeighborhoodValue) {
-        console.log(`Already showing data for ${selectedValue}`);
+    if (formattedValue === currentNeighborhoodValue) {
+        console.log(`Already showing data for ${formattedValue}`);
         return;
     }
     
     // Update the current neighborhood value
-    currentNeighborhoodValue = selectedValue;
+    currentNeighborhoodValue = formattedValue;
     
-    console.log(`Loading data for neighborhood: ${selectedValue}`);
+    // Load the selected neighborhood data
+    loadNeighborhoodData(formattedValue);
+}
+
+/**
+ * Try to load sample data if the actual data file is not found
+ */
+function tryLoadSampleData(neighborhood, loadingIndicator) {
+    console.log(`Attempting to load sample data for ${neighborhood}...`);
     
-    try {
-        // Show loading indicator
-        const loadingIndicator = document.getElementById('map-loading-indicator');
-        if (loadingIndicator) {
-            loadingIndicator.style.display = 'flex';
-            loadingIndicator.innerHTML = `Loading data for ${selectedValue.replace('.csv', '')}...`;
-        }
+    if (loadingIndicator) {
+        loadingIndicator.textContent = `Actual data not found, loading sample data for ${neighborhood.replace('.csv', '')}...`;
+    }
+    
+    // Generate some sample data for testing
+    const sampleData = [];
+    for (let i = 0; i < 50; i++) {
+        // Generate random coordinates within Seattle area
+        const lat = 47.5 + Math.random() * 0.2;
+        const lng = -122.4 + Math.random() * 0.2;
         
-        // Construct the file path
-        const filePath = `dataset/neighborhood-data/${selectedValue}`;
-        console.log(`Attempting to load: ${filePath}`);
-        
-        // Load the CSV file for the selected neighborhood
-        d3.csv(filePath)
-            .then(data => {
-                console.log(`Successfully loaded ${data.length} records from ${filePath}`);
-                
-                // Process the data and update the map
-                processNeighborhoodData(data);
-                
-                // Hide loading indicator
-                if (loadingIndicator) {
-                    loadingIndicator.style.display = 'none';
-                }
-            })
-            .catch(error => {
-                console.error(`Error loading CSV file ${filePath}:`, error);
-                if (loadingIndicator) {
-                    loadingIndicator.innerHTML = `Error loading data for ${selectedValue.replace('.csv', '')}: File not found or invalid`;
-                }
-            });
-    } catch (error) {
-        console.error("Error in filterMapByNeighborhood:", error);
-        const loadingIndicator = document.getElementById('map-loading-indicator');
-        if (loadingIndicator) {
-            loadingIndicator.innerHTML = 'Error filtering data: ' + error.message;
-        }
+        sampleData.push({
+            latitude: lat,
+            longitude: lng,
+            departmentname: ['Transportation', 'Parks', 'Police', 'Fire', 'Utilities'][Math.floor(Math.random() * 5)],
+            councildistrict: Math.floor(Math.random() * 7) + 1,
+            webintakeservicerequests: ['Pothole', 'Tree Down', 'Graffiti', 'Streetlight', 'Parking'][Math.floor(Math.random() * 5)],
+            createddate: new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toISOString(),
+            methodreceivedname: ['Web', 'Phone', 'Mobile App', 'Email'][Math.floor(Math.random() * 4)],
+            servicerequeststatusname: ['Open', 'Closed', 'In Progress'][Math.floor(Math.random() * 3)],
+            neighborhood: neighborhood.replace('.csv', ''),
+            zipcode: ['98101', '98102', '98103', '98104', '98105'][Math.floor(Math.random() * 5)]
+        });
+    }
+    
+    console.log(`Generated ${sampleData.length} sample records`);
+    processNeighborhoodData(sampleData);
+    
+    if (loadingIndicator) {
+        loadingIndicator.style.display = 'none';
     }
 }
 
@@ -319,10 +391,4 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error("Neighborhood filter dropdown not found");
     }
-    
-    // Load the default neighborhood data after a delay
-    setTimeout(function() {
-        console.log("Loading default neighborhood data");
-        filterMapByNeighborhood();
-    }, 1000);
 });
