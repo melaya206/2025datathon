@@ -16,7 +16,7 @@ Or view the live demo at https://students.washington.edu/imotta/
 
 **Kyler Tran**
 
-- Email: contact@kylertran.com
+- Email: kylerizinbox@gmail.com
 
 - Website: https://www.kylertran.com/
 
