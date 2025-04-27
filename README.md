@@ -8,9 +8,11 @@ Download the repository via GitHubs web interface or by cloning:
 
 `git clone https://github.com/melaya206/2025datathon/tree/main`
 
+> **Note:** The 'Customer_Service_Requests_20250426.csv' file is absent from the dataset directory due to GitHub's file size limits. You will need to add the dataset yourself in order for the website to function.
+
 ## Usage
 
-Go to https://website.com
+Go to https://students.washington.edu/imotta/
     
 ## Contact the Authors
 
