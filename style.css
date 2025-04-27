@@ -41,7 +41,7 @@ body {
     width: 100%;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     padding: 0;
-    height: 94px; /* Control the height of the navigation bar */
+    min-height: 3rem;
     display: flex;
     align-items: center;
 }
@@ -49,7 +49,7 @@ body {
 .page-navigation .container {
     display: flex;
     align-items: center;
-    padding: 0;
+    padding: 10px 0;
     flex-wrap: wrap;
     justify-content: space-between;
     max-width: 100%;
