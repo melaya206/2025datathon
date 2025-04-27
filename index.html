@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,10 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
     <!-- Leaflet CSS and JS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <!-- Leaflet MarkerCluster Plugin -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
@@ -31,35 +34,36 @@
         .choices__list--dropdown .choices__item--selectable:hover {
             background-color: #f0f7ff !important;
         }
-        
+
         /* Force highlighted item styles */
         .choices__list--dropdown .choices__item--selectable.is-highlighted {
             background-color: #e1efff !important;
         }
-        
+
         /* Ensure vertical centering */
         .choices__list--dropdown .choices__item {
             display: flex !important;
             align-items: center !important;
             padding: 10px 15px !important;
         }
-        
+
         /* Remove "Press to select" text */
         .choices__list--dropdown .choices__item--selectable:after {
             content: none !important;
             display: none !important;
         }
-        
+
         /* Fix hover effect to work immediately */
         .choices__list--dropdown .choices__item--selectable {
-            transition: none !important; /* Remove transition to make hover immediate */
+            transition: none !important;
+            /* Remove transition to make hover immediate */
         }
-        
+
         /* Apply hover styles to all items in the dropdown */
         .choices.is-open .choices__list--dropdown .choices__item--selectable:hover {
             background-color: #f0f7ff !important;
         }
-        
+
         /* Force hover styles with JavaScript */
         .choices__item--hover {
             background-color: #f0f7ff !important;
@@ -68,66 +72,76 @@
     <!-- Link to the external JavaScript file -->
     <script src="scripts/searchable-dropdown.js"></script>
     <script src="scripts/distribution-by-area.js"></script>
-    
+    <script src="scripts/distribution-by-dept.js"></script>
+
     <!-- Custom styles to fix z-index issues with Choices.js -->
     <style>
         /* Force header to be above everything */
-        body > header {
+        body>header {
             position: relative;
-            z-index: 99999 !important; /* Extremely high z-index */
+            z-index: 99999 !important;
+            /* Extremely high z-index */
         }
-        
+
         /* Force navigation to be below header but above everything else */
         .page-navigation {
             position: sticky;
-            z-index: 99998 !important; /* Very high z-index */
+            z-index: 99998 !important;
+            /* Very high z-index */
         }
-        
+
         /* Force Choices.js dropdown to be below header and navigation */
         .choices__list--dropdown {
-            z-index: 5000 !important; /* Lower than header and navigation */
+            z-index: 5000 !important;
+            /* Lower than header and navigation */
         }
-        
+
         /* Fix for Choices.js dropdown appearing above header */
         .choices {
             position: relative;
-            z-index: 5000 !important; /* Lower than header and navigation */
+            z-index: 5000 !important;
+            /* Lower than header and navigation */
         }
-        
+
         /* Force map to be below dropdown */
-        #map, .map-container, .leaflet-container {
-            z-index: 1000 !important; /* Lower than dropdown */
+        #map,
+        .map-container,
+        .leaflet-container {
+            z-index: 1000 !important;
+            /* Lower than dropdown */
         }
-        
+
         /* Ensure all other content is below header */
-        main, section, .visualization-container {
+        main,
+        section,
+        .visualization-container {
             z-index: 1 !important;
         }
     </style>
 </head>
-<body>
-    <!--header>
-        <div class="container">
-            <h1 class="header-title">Seattle Customer Service Requests Analysis</h1>
-            <h3 class="header-subtitle">DubsTech Datathon 2025</h3>
-            <button class="github-button" onclick="window.open('https://github.com/melaya206/2025datathon', '_blank')">View on GitHub</button>
-        </div>
-    </header-->
 
+<body>
+    <!-- Page navigation -->
     <nav class="page-navigation">
         <div class="container">
             <img class="logo" src="resources/ctrl+alt+elite-alt.png" alt="Logo">
             <div class="nav-buttons-container">
-                <button class="nav-button" onclick="document.getElementById('introduction').scrollIntoView({behavior: 'smooth'})">Introduction</button>
-                <button class="nav-button" onclick="document.getElementById('service-distribution').scrollIntoView({behavior: 'smooth'})">Service Distribution</button>
-                <button class="nav-button" onclick="document.getElementById('geographical-distribution').scrollIntoView({behavior: 'smooth'})">Geographical Distribution</button>
-                <button class="nav-button" onclick="document.getElementById('meet-the-team').scrollIntoView({behavior: 'smooth'})">Meet the Team</button>
+                <button class="nav-button"
+                    onclick="document.getElementById('introduction').scrollIntoView({behavior: 'smooth'})">Introduction</button>
+                <button class="nav-button"
+                    onclick="document.getElementById('service-distribution').scrollIntoView({behavior: 'smooth'})">Service
+                    Distribution</button>
+                <button class="nav-button"
+                    onclick="document.getElementById('geographical-distribution').scrollIntoView({behavior: 'smooth'})">Geographical
+                    Distribution</button>
+                <button class="nav-button"
+                    onclick="document.getElementById('meet-the-team').scrollIntoView({behavior: 'smooth'})">Meet the
+                    Team</button>
             </div>
         </div>
     </nav>
-<!-- 
-    <img class="bg-image" src="resources/Seattle-Sunset.jpg" alt="Seattle Sunset"> -->
 
+    <!-- Seattle sunset image-->
     <div class="hero-section">
         <img src="resources/Seattle-Sunset.jpg" alt="Seattle Skyline" class="hero-image">
         <div class="hero-text">
@@ -140,55 +154,63 @@
         <section id="introduction">
             <h2>Introduction</h2>
             <div class="process-description">
-                <p>We began by cleaning the original dataset in R Studio, removing duplicates and incomplete service requests to ensure data quality. For visualization, we built this interactive webpage using HTML, CSS, and JavaScript. Tableau was used to create dynamic dashboards, while Leaflet enabled us to map service requests geographically across Seattle. Additionally, we leveraged Plotly to develop 3D visualizations, highlighting trends by department and council district.</p>
-                <center>
-                    <h3>Tools Utilized</h3>
-                    <img class="tool-logo" src="resources/logos/js.png" alt="JavaScript Logo">
-                    <img class="tool-logo" src="resources/logos/Tableau.png" alt="Tableau Logo">
-                    <img class="tool-logo" src="resources/logos/RStudio.png" alt="RStudio Logo">
-                    <img class="tool-logo" src="resources/logos/Plotly.png" alt="Plotly Logo">
-                    <img class="tool-logo" src="resources/logos/Leaflet.png" alt="Leaflet Logo">
-                </center>
+                <p>INTRODUCTION</p>
             </div>
         </section>
 
-        <!-- Image Carousel-->
-        <section id="image-carousel">
-            <h2>Image Carousel</h2>
-            
-            <div class="image-container">
-                <p> Insert image carousel here</p>
+        <!-- 3D Line Plot-->
+        <section id="dept-visualization-section">
+            <h2>Department Service Requests by Year</h2>
 
+            <body>
+                This 3D line plot illustrates the volume of customer service requests handled by each Seattle city
+                department annually from 2021 to early 2025. Each department is represented by a distinct colored line,
+                allowing for clear comparison of service demand patterns over time. The x-axis displays the different
+                city departments, while the y-axis shows the progression of years. The z-axis represents the total
+                number of customer service requests received during each time period, with higher values indicating
+                greater service demand. This interactive visualization enables stakeholders to identify trends, compare
+                departmental workloads, and analyze how service request volumes have evolved across different
+                departments during this four-year period. Clicking on a department in the key will toggle the visibility of that department's line. 
+            </body>
+
+            <div class="data-visualization">
+                <div id="3d-line-plot" style="height: 600px; width: 100%;"></div>
             </div>
         </section>
-        
+
         <!-- Service Request Distribution Section -->
         <section id="service-distribution">
             <h2>Service Request Distribution</h2>
-                <body> 
-                    This visualizaton shows total number of customer service requests submitted to the City of Seattle,
-                    categorized by service type, from January 2021 through early April 2025, with rankings for each month. 
-                    Each service type is represented by unique trend bar, allowing easy comparison over time. 
-                    On the y-axis iss rankings of the most requested service during the selected month with rank #1
-                    being the most requested service. The x-axis shows a running sum of the total number of requests
-                    sent overall. This visualization is used to inform trends for each service type.
-                </body>
-            
+
+            <body>
+                This visualization shows total number of customer service requests submitted to the City of Seattle,
+                categorized by service type, from January 2021 through early April 2025, with rankings for each month.
+                Each service type is represented by unique trend bar, allowing easy comparison over time.
+                On the y-axis are rankings of the most requested service during the selected month with rank #1
+                being the most requested service. The x-axis shows a running sum of the total number of requests
+                sent overall. This visualization is used to inform trends for each service type.
+            </body>
+
             <div class="visualization-container">
                 <div class="visualization-title">Customer Service Request Distribution Over 4 Years</div>
-                <div class="visualization-description">Trends in Seattle service requests show steady illegal parking reports, public spacce issues, and seasonal patterns</div>
-                
+                <div class="visualization-description">Trends in Seattle service requests show steady illegal parking
+                    reports, public spacce issues, and seasonal patterns</div>
+
                 <div class='tableauPlaceholder' id='viz1745751512986' style='position: relative'>
                     <noscript>
-                        <a href='#'><img alt='Customer Requests Over Time by Month - December 2021 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_17457421107250&#47;Month&#47;1_rss.png' style='border: none' /></a>
+                        <a href='#'><img alt='Customer Requests Over Time by Month - December 2021 '
+                                src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_17457421107250&#47;Month&#47;1_rss.png'
+                                style='border: none' /></a>
                     </noscript>
-                    <object class='tableauViz'  style='display:none;'>
-                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                        <param name='embed_code_version' value='3' /> 
+                    <object class='tableauViz' style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                        <param name='embed_code_version' value='3' />
                         <param name='site_root' value='' />
                         <param name='name' value='Book1_17457421107250&#47;Month' />
-                        <param name='tabs' value='no' /><param name='toolbar' value='yes' />
-                        <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_17457421107250&#47;Month&#47;1.png' /> 
+                        <param name='tabs' value='no' />
+                        <param name='toolbar' value='yes' />
+                        <param name='static_image'
+                            value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_17457421107250&#47;Month&#47;1.png' />
                         <param name='animate_transition' value='yes' />
                         <param name='display_static_image' value='yes' />
                         <param name='display_spinner' value='yes' />
@@ -196,58 +218,71 @@
                         <param name='display_count' value='yes' />
                         <param name='language' value='en-US' />
                         <param name='filter' value='publish=yes' />
-                    </object></div>                
-                    <script type='text/javascript'>                    
-                        var divElement = document.getElementById('viz1745751512986');                    
-                        var vizElement = divElement.getElementsByTagName('object')[0];                    
-                        vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    
-                        var scriptElement = document.createElement('script');                    
-                        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
-                        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-                    </script>
+                    </object>
+                </div>
+                <script type='text/javascript'>
+                    var divElement = document.getElementById('viz1745751512986');
+                    var vizElement = divElement.getElementsByTagName('object')[0];
+                    vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+                    var scriptElement = document.createElement('script');
+                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+                </script>
+                <h3 style="text-align: left;">Notable Trends</h3>
+                <div style="text-align: left;">
+                    <strong>Unauthorized Encampment</strong> was first reported in July 2022 with 4,343 requests, but
+                    grew to be the
+                    second most requested service by April 2025 at 129,102 request -- almost 30 times larger.
 
-                <p>Analysis of service requests by department and council district.</p>
+                    <strong>Parking Enforcement</strong> remained a frequent service request throughout
+                    the past four years. Illegal parking parking has slight increases during summer months, suggesting a
+                    potential
+                    seasonal pattern linked to higher city activity.
+
+                    <strong>Abandoned Vehicle/72hr Parking Ordinance</strong> became more frequently requested
+                    later on but eventually overcame all requests by far as the most prominent service type. A clear
+                    upward
+                    trend begins in early 2023 and steadily rises into 2024. This suggests that abandoned vehicles have
+                    become
+                    an increasingly significant concern for residents in recent years.
+
+                    <strong>Graffiti Removal</strong> requests show significant growth over time, especially starting
+                    mid-2022.
+                    This could reflect growing city efforts to address public space cleanliness or heightened public
+                    awareness and reporting
+
+                    <strong>Streetlight Issues and Pothole Reports</strong> have relatively stable trends with moderate
+                    seasonal fluctuations,
+                    often peaking during winter and early spring months — a pattern that aligns with weather-related
+                    infrastructure damage.
+                </div>
+
+                <h3 style="text-align: left;">Overall Insights</h3>
+                <div style="text-align: left;">
+                    Several service types exhibit seasonal variation, hinting at environmental or behavioral influences
+                    on request volumes.
+                    Unauthorized Encampment, Abandoned Vehicle, and Graffiti Removal requests show the most significant
+                    growth trends,
+                    suggesting emerging problem areas that may need increased resources or intervention. By contrast,
+                    Parking Enforcement
+                    and Potholes are steady, suggesting these are ongoing, baseline issues rather than rapidly
+                    increasing problems.
+
+                    This visualization helps identify which service areas have growing demand over time and where city
+                    response efforts may
+                    need to adapt to shifting patterns in resident needs.
+                </div>
             </div>
-
-            <h3>Notable Trends</h3>
-            <body>
-                <strong>Unauthorized Encampment</strong> was first reported in July 2022 with 4,343 requests, but grew to be the
-                second most requested service by April 2025 at 129,102 request -- almost 30 times larger.
-
-                <strong>Parking Enforcement</strong> remained a frequent service request throughout 
-                the past four years. Illegal parking parking has slight increases during summer months, suggesting a potential
-                seasonal pattern linked to higher city activity. 
-                
-                <strong>Abandonded Vehicle/72hr Parking Ordinance</strong> became more frequently requested 
-                later on but eventually overcame all requests by far as the most prominent service type. A clear upward
-                trend begins in early 2023 and steadily rises into 2024. This suggests that abandoned vehicles have become 
-                an increasingly significant concernt for residents in recent years.
-
-                <strong>Graffiti Removal</strong> requests show significant growth over time, especially starting mid-2022. 
-                    This could reflect growing city efforts to address public space cleanliness or heightened public awareness and reporting
-
-                <strong>Streetlight Issues and Pothole Reports</strong> have relatively stable trends with moderate seasonal fluctuations, 
-                often peaking during winter and early spring months — a pattern that aligns with weather-related infrastructure damage.
-            </body>
-
-            <h3>Overall Insights</h3>
-            Several service types exhibity seasonal variation, hinting at environmental or behavioral influences on request volumes.
-            Unauthorized Encampment, Abandonded Vehicle, and Graffiti Removal requests show the most significant growht trends,
-            suggesting emerging problem areas that may need increased resources or intervention. By contrast, Parking Enforcement
-            and Potholes are steady, suggesting these are ongoing, baseline issues rather than rapidly increasing problems.
-
-            This visualization helps identify which service areas have growing demand over time and where city response efforts may
-            need to adapt to shifting patterns in resident needs.
-
         </section>
 
         <!-- Geographical Distribution Section -->
         <section id="geographical-distribution">
             <h2>Geographical Distribution</h2>
-            
+
             <div class="visualization-container">
                 <div class="visualization-title">Geographical Distribution of Service Requests</div>
-                <div class="visualization-description">Heatmap showing the distribution of service requests across Seattle</div>
+                <div class="visualization-description">Heatmap showing the distribution of service requests across
+                    Seattle</div>
                 <div class="filter-container">
                     <label for="request-neighborhood-filter">Filter by neighborhood: </label>
                     <select id="request-neighborhood-filter" class="filter-dropdown">
@@ -345,15 +380,36 @@
                         <option value="OOO.csv">OOO</option>
                     </select>
                 </div>
-                
+
                 <div class="map-container" style="position: relative; height: 500px; width: 100%;">
-                    <div id="map-loading-indicator" class="loading-indicator" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; background: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: center;">
-                        Initializing map...
-                    </div>
                     <div id="map" style="height: 100%; width: 100%; z-index: 1;"></div>
                 </div>
-                <div class="visualization-note">Note: Clicking on a marker will display the details of the service request</div>
-                <p>Identifying areas with the highest service requests (Neighborhoods, Council Districts, ZIP Codes).</p>
+                <div class="visualization-note">Note: Clicking on a marker will display the details of the service
+                    request</div>
+                <h3 style="text-align: left;">Analysis</h3>
+                <div style="text-align: left;">
+    
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Process -->
+        <section id="our-process">
+            <h2>Our Process</h2>
+            <div class="process-description">
+                <p>We began by cleaning the original dataset in R Studio, removing duplicates and incomplete service
+                    requests to ensure data quality. For visualization, we built this interactive webpage using HTML,
+                    CSS, and JavaScript. Tableau was used to create dynamic dashboards, while Leaflet enabled us to map
+                    service requests geographically across Seattle. Additionally, we leveraged Plotly to develop 3D
+                    visualizations, highlighting trends by department and council district.</p>
+                <center>
+                    <h3>Tools Utilized</h3>
+                    <img class="tool-logo" src="resources/logos/js.png" alt="JavaScript Logo">
+                    <img class="tool-logo" src="resources/logos/Tableau.png" alt="Tableau Logo">
+                    <img class="tool-logo" src="resources/logos/RStudio.png" alt="RStudio Logo">
+                    <img class="tool-logo" src="resources/logos/Plotly.png" alt="Plotly Logo">
+                    <img class="tool-logo" src="resources/logos/Leaflet.png" alt="Leaflet Logo">
+                </center>
             </div>
         </section>
 
@@ -363,12 +419,12 @@
             <div class="team-container">
                 <img src="resources/ctrl+alt+elite-alt.png" alt="Logo" class="logo-big">
                 <div class="team-member">
-                    <img src="resources/headshots/melaya-madrid.png" alt="Melaya Madrid" class="team-member-image">
-                    <h3>Melaya Madrid</h3>
+                    <img src="resources/headshots/melaya-madrid.png" alt="Melaya La Madrid" class="team-member-image">
+                    <h3>Melaya La Madrid</h3>
                     <p class="role">Informatics Undergraduate</p>
                     <p>Focused on data wrangling, analysis, and visualization</p>
                     <div class="contact">
-                        <a href="mailto:lamamel@uw.edu">Email</a> | 
+                        <a href="mailto:lamamel@uw.edu">Email</a> |
                         <a href="https://www.linkedin.com/in/melaya/" target="_blank">LinkedIn</a>
                     </div>
                 </div>
@@ -379,18 +435,18 @@
                     <p class="role">Psychology Undergraduate</p>
                     <p>Focused on data cleaning and statistical analysis</p>
                     <div class="contact">
-                        <a href="mailto:imotta@uw.edu">Email</a> | 
+                        <a href="mailto:imotta@uw.edu">Email</a> |
                         <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>
                     </div>
                 </div>
-                
+
                 <div class="team-member">
                     <img src="resources/headshots/kyler-tran.png" alt="Kyler Tran" class="team-member-image">
                     <h3>Kyler Tran</h3>
                     <p class="role">Infrastructure Engineer</p>
                     <p>Full-stack developer with expertise in data visualization</p>
                     <div class="contact">
-                        <a href="mailto:contact@kylerzinbox.com">Email</a> | 
+                        <a href="mailto:contact@kylerzinbox.com">Email</a> |
                         <a href="https://www.linkedin.com/in/kyler-tran/" target="_blank">LinkedIn</a> |
                         <a href="https://kylertran.com" target="_blank">Portfolio</a>
                     </div>
@@ -407,7 +463,7 @@
     <!-- Initialize Choices.js -->
     <script>
         // Initialize Choices.js when the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const dropdown = document.getElementById('request-type-filter');
             if (dropdown) {
                 try {
@@ -425,4 +481,5 @@
         });
     </script>
 </body>
+
 </html>

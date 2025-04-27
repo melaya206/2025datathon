@@ -1,0 +1,49 @@
+"","City.Department","Year","Requests"
+"1","Admin",2022,87
+"2","Admin",2023,156
+"3","Admin",2024,175
+"4","Admin",2025,27
+"5","CTR-Seattle Center",2021,146
+"6","CTR-Seattle Center",2022,208
+"7","CTR-Seattle Center",2023,213
+"8","CTR-Seattle Center",2024,203
+"9","CTR-Seattle Center",2025,246
+"10","FAS-Finance and Administrative Services",2021,31345
+"11","FAS-Finance and Administrative Services",2022,36929
+"12","FAS-Finance and Administrative Services",2023,28450
+"13","FAS-Finance and Administrative Services",2024,31839
+"14","FAS-Finance and Administrative Services",2025,9124
+"15","ITD-Seattle Information Technology",2021,1063
+"16","ITD-Seattle Information Technology",2022,537
+"17","ITD-Seattle Information Technology",2023,406
+"18","ITD-Seattle Information Technology",2024,520
+"19","ITD-Seattle Information Technology",2025,194
+"20","SCL-Seattle City Light",2021,10290
+"21","SCL-Seattle City Light",2022,10762
+"22","SCL-Seattle City Light",2023,7671
+"23","SCL-Seattle City Light",2024,7824
+"24","SCL-Seattle City Light",2025,3086
+"25","SDOT-Seattle Department of Transportation",2021,36481
+"26","SDOT-Seattle Department of Transportation",2022,83437
+"27","SDOT-Seattle Department of Transportation",2023,40785
+"28","SDOT-Seattle Department of Transportation",2024,41295
+"29","SDOT-Seattle Department of Transportation",2025,14024
+"30","SEA-City of Seattle",2022,20653
+"31","SEA-City of Seattle",2023,41505
+"32","SEA-City of Seattle",2024,47720
+"33","SEA-City of Seattle",2025,19067
+"34","SPD-Seattle Police Department",2021,24992
+"35","SPD-Seattle Police Department",2022,30718
+"36","SPD-Seattle Police Department",2023,81092
+"37","SPD-Seattle Police Department",2024,90029
+"38","SPD-Seattle Police Department",2025,28409
+"39","SPR-Seattle Parks and Recreation",2021,2979
+"40","SPR-Seattle Parks and Recreation",2022,5286
+"41","SPR-Seattle Parks and Recreation",2023,10663
+"42","SPR-Seattle Parks and Recreation",2024,12917
+"43","SPR-Seattle Parks and Recreation",2025,3750
+"44","SPU-Seattle Public Utilities",2021,50337
+"45","SPU-Seattle Public Utilities",2022,52950
+"46","SPU-Seattle Public Utilities",2023,47501
+"47","SPU-Seattle Public Utilities",2024,56062
+"48","SPU-Seattle Public Utilities",2025,20795
