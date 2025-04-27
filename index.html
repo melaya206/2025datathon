@@ -151,30 +151,37 @@
             
             <div class="image-container">
                 <p> Insert image carousel here</p>
+
             </div>
         </section>
         
         <!-- Service Request Distribution Section -->
         <section id="service-distribution">
             <h2>Service Request Distribution</h2>
+                <body> 
+                    This visualizaton shows total number of customer service requests submitted to the City of Seattle,
+                    categorized by service type, from January 2021 through early April 2025, with rankings for each month. 
+                    Each service type is represented by unique trend bar, allowing easy comparison over time. 
+                    On the y-axis iss rankings of the most requested service during the selected month with rank #1
+                    being the most requested service. The x-axis shows a running sum of the total number of requests
+                    sent overall. This visualization is used to inform trends for each service type.
+                </body>
             
             <div class="visualization-container">
-                <div class="visualization-title">Department & District Distribution</div>
-                <div class="visualization-description">Heatmap showing the distribution of service requests across city departments and council districts</div>
-                <div class='tableauPlaceholder' id='viz1745746218976' style='position: relative'>
+                <div class="visualization-title">Customer Service Request Distribution Over 4 Years</div>
+                <div class="visualization-description">Trends in Seattle service requests show steady illegal parking reports, public spacce issues, and seasonal patterns</div>
+                
+                <div class='tableauPlaceholder' id='viz1745751512986' style='position: relative'>
                     <noscript>
-                        <a href='#'>
-                            <img alt='Sheet 2 - September 24, 2023 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_17457421107250&#47;Sheet2&#47;1_rss.png' style='border: none' />
-                        </a>
+                        <a href='#'><img alt='Customer Requests Over Time by Month - December 2021 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_17457421107250&#47;Month&#47;1_rss.png' style='border: none' /></a>
                     </noscript>
-                    <object class='tableauViz' style='display:none;'>
+                    <object class='tableauViz'  style='display:none;'>
                         <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
                         <param name='embed_code_version' value='3' /> 
                         <param name='site_root' value='' />
-                        <param name='name' value='Book1_17457421107250&#47;Sheet2' />
-                        <param name='tabs' value='no' />
-                        <param name='toolbar' value='yes' />
-                        <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_17457421107250&#47;Sheet2&#47;1.png' /> 
+                        <param name='name' value='Book1_17457421107250&#47;Month' />
+                        <param name='tabs' value='no' /><param name='toolbar' value='yes' />
+                        <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_17457421107250&#47;Month&#47;1.png' /> 
                         <param name='animate_transition' value='yes' />
                         <param name='display_static_image' value='yes' />
                         <param name='display_spinner' value='yes' />
@@ -182,19 +189,49 @@
                         <param name='display_count' value='yes' />
                         <param name='language' value='en-US' />
                         <param name='filter' value='publish=yes' />
-                    </object>
-                </div> 
-                <script type='text/javascript'> 
-                    var divElement = document.getElementById('viz1745746218976'); 
-                    var vizElement = divElement.getElementsByTagName('object')[0];
-                    vizElement.style.width='100%';
-                    vizElement.style.height=(divElement.offsetWidth*0.75)+'px'; 
-                    var scriptElement = document.createElement('script'); 
-                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; 
-                    vizElement.parentNode.insertBefore(scriptElement, vizElement); 
-                </script>
+                    </object></div>                
+                    <script type='text/javascript'>                    
+                        var divElement = document.getElementById('viz1745751512986');                    
+                        var vizElement = divElement.getElementsByTagName('object')[0];                    
+                        vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    
+                        var scriptElement = document.createElement('script');                    
+                        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+                        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+                    </script>
+
                 <p>Analysis of service requests by department and council district.</p>
             </div>
+
+            <h3>Notable Trends</h3>
+            <body>
+                <strong>Unauthorized Encampment</strong> was first reported in July 2022 with 4,343 requests, but grew to be the
+                second most requested service by April 2025 at 129,102 request -- almost 30 times larger.
+
+                <strong>Parking Enforcement</strong> remained a frequent service request throughout 
+                the past four years. Illegal parking parking has slight increases during summer months, suggesting a potential
+                seasonal pattern linked to higher city activity. 
+                
+                <strong>Abandonded Vehicle/72hr Parking Ordinance</strong> became more frequently requested 
+                later on but eventually overcame all requests by far as the most prominent service type. A clear upward
+                trend begins in early 2023 and steadily rises into 2024. This suggests that abandoned vehicles have become 
+                an increasingly significant concernt for residents in recent years.
+
+                <strong>Graffiti Removal</strong> requests show significant growth over time, especially starting mid-2022. 
+                    This could reflect growing city efforts to address public space cleanliness or heightened public awareness and reporting
+
+                <strong>Streetlight Issues and Pothole Reports</strong> have relatively stable trends with moderate seasonal fluctuations, 
+                often peaking during winter and early spring months — a pattern that aligns with weather-related infrastructure damage.
+            </body>
+
+            <h3>Overall Insights</h3>
+            Several service types exhibity seasonal variation, hinting at environmental or behavioral influences on request volumes.
+            Unauthorized Encampment, Abandonded Vehicle, and Graffiti Removal requests show the most significant growht trends,
+            suggesting emerging problem areas that may need increased resources or intervention. By contrast, Parking Enforcement
+            and Potholes are steady, suggesting these are ongoing, baseline issues rather than rapidly increasing problems.
+
+            This visualization helps identify which service areas have growing demand over time and where city response efforts may
+            need to adapt to shifting patterns in resident needs.
+
         </section>
 
         <!-- Geographical Distribution Section -->
