@@ -16,12 +16,10 @@
     <!-- Leaflet CSS and JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    
     <!-- Leaflet MarkerCluster Plugin -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-    
     <!-- Leaflet Heat Plugin -->
     <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
 </head>
@@ -30,10 +28,10 @@
         <div class="container">
             <h1 class="header-title">Seattle Customer Service Requests Analysis</h1>
             <h3 class="header-subtitle">Ctrl+Alt+Elite | DubsTech Datathon 2025</h3>
+            <button class="github-button" onclick="window.open('https://github.com/melaya206/2025datathon', '_blank')">View on GitHub</button>
         </div>
     </header>
 
-    <!-- Navigation Buttons - moved outside container -->
     <nav class="page-navigation">
         <div class="container">
             <button class="nav-button" onclick="document.getElementById('introduction').scrollIntoView({behavior: 'smooth'})">Introduction</button>
@@ -44,11 +42,23 @@
     </nav>
 
     <div class="container">
+        <!-- Introduction Section -->
         <section id="introduction">
             <h2>Introduction</h2>
-            <p>Example text</p>
+            <div class="process-description">
+                <img src="resources/Seattle-Skyline.jpg" alt="Seattle" style="width: 100%; height: auto;">
+                <p>We began by cleaning the original dataset in R Studio, removing duplicates and incomplete service requests to ensure data quality. For visualization, we built this interactive webpage using HTML, CSS, and JavaScript. Tableau was used to create dynamic dashboards, while Leaflet enabled us to map service requests geographically across Seattle. Additionally, we leveraged Plotly to develop 3D visualizations, highlighting trends by department and council district.</p>
+                <center>
+                    <img class="tool-logo" src="resources/logos/js.png" alt="JavaScript Logo">
+                    <img class="tool-logo" src="resources/logos/Tableau.png" alt="Tableau Logo">
+                    <img class="tool-logo" src="resources/logos/RStudio.png" alt="RStudio Logo">
+                    <img class="tool-logo" src="resources/logos/Plotly.png" alt="Plotly Logo">
+                    <img class="tool-logo" src="resources/logos/Leaflet.png" alt="Leaflet Logo">
+                </center>
+            </div>
         </section>
-
+        
+        <!-- Service Request Distribution Section -->
         <section id="service-distribution">
             <h2>Service Request Distribution</h2>
             
@@ -61,6 +71,7 @@
             <p>Analysis of service requests by department and council district.</p>
         </section>
 
+        <!-- Geographical Distribution Section -->
         <section id="geographical-distribution">
             <h2>Geographical Distribution</h2>
             
@@ -84,7 +95,7 @@
             <h2 style="margin-bottom: 50px;">Meet the Team</h2>
             <div class="team-container">
                 <div class="team-member">
-                    <img src="resources/melaya-madrid.png" alt="Melaya Madrid" class="team-member-image">
+                    <img src="resources/headshots/melaya-madrid.png" alt="Melaya Madrid" class="team-member-image">
                     <h3>Melaya Madrid</h3>
                     <p class="role">Informatics Undergraduate</p>
                     <p>Focused on data analysis and visualization</p>
@@ -95,7 +106,7 @@
                 </div>
 
                 <div class="team-member">
-                    <img src="resources/isabel-motta.png" alt="Isabel Motta" class="team-member-image">
+                    <img src="resources/headshots/isabel-motta.png" alt="Isabel Motta" class="team-member-image">
                     <h3>Isabel Motta</h3>
                     <p class="role">Psychology Undergraduate</p>
                     <p>Focused on statistical analysis and data visualization</p>
@@ -106,7 +117,7 @@
                 </div>
                 
                 <div class="team-member">
-                    <img src="resources/kyler-tran.png" alt="Kyler Tran" class="team-member-image">
+                    <img src="resources/headshots/kyler-tran.png" alt="Kyler Tran" class="team-member-image">
                     <h3>Kyler Tran</h3>
                     <p class="role">Infrastructure Engineer</p>
                     <p>Full-stack developer with expertise in data visualization</p>

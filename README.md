@@ -4,7 +4,7 @@ Prompt: Customer Service Requests
 
 ## Getting Started
 
-Download the repository via GitHubs web interface or by cloning:
+Download the repository via the GitHub web interface or by cloning:
 
 `git clone https://github.com/melaya206/2025datathon/tree/main`
 
@@ -12,7 +12,7 @@ Download the repository via GitHubs web interface or by cloning:
 
 ## Usage
 
-Go to https://students.washington.edu/imotta/
+View the online version of this website at https://students.washington.edu/imotta/
     
 ## Contact the Authors
 
