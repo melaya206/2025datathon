@@ -18,8 +18,9 @@ body {
     height: 40px;
     width: auto;
     vertical-align: middle;
-    margin-right: 20px;
-    display: block; /* Ensures the image is treated as a block element */
+    margin: 0;
+    padding: 10px 0 10px 20px;
+    display: block;
 }
 
 .logo-big {
@@ -31,11 +32,87 @@ body {
     text-align: center;
 }
 
-/* Navigation styling with flexbox for better alignment */
+/* Navigation styling */
+.page-navigation {
+    background-color: #3b5664;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 0;
+    height: 94px; /* Control the height of the navigation bar */
+    display: flex;
+    align-items: center;
+}
+
 .page-navigation .container {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+/* Create a container for the navigation buttons */
+.nav-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.nav-button {
+    padding: 12px 10px;
+    background-color: transparent;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: .8rem;
+    transition: all 0.2s ease;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-display:swap;
+    font-weight: bold;
+    font-style: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-button:hover {
+    background-color: transparent;
+    transform: translateY(-2px);
+}
+
+.nav-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Responsive behavior for smaller screens */
+@media (max-width: 768px) {
+    .page-navigation .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .logo {
+        margin-bottom: 15px;
+    }
+    
+    .nav-buttons-container {
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .nav-button {
+        margin-bottom: 10px;
+    }
 }
 
 header {
@@ -46,7 +123,7 @@ header {
     width: 100%;
     padding: 20px 0;
     position: relative;
-    z-index: 2000; /* Higher than the dropdown */
+    z-index: 2000;
 }
 
 .header-title {
@@ -66,7 +143,7 @@ header {
 
 h2 {
     color: #2c3e50;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid #3b5664;
     padding-bottom: 0.5rem;
     margin-top: 2rem;
     font-size: 1.8rem;
@@ -85,45 +162,22 @@ h3 {
     justify-content: center;
     gap: 15px;
     margin: 0;
-    background-color: #3b5664;
+    background-color: rgba(247, 247, 247, 0.75);
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    width: 100%; /* Make it full width */
-    left: 0; /* Ensure it aligns to the left edge */
-    box-sizing: border-box; /* Include padding in width calculation */
+    width: 100%;
+    left: 0;
+    box-sizing: border-box;
 }
 
 /* Ensure the container doesn't restrict the nav width */
 .container .page-navigation {
     max-width: none;
-    margin-left: -20px; /* Offset the container padding */
+    margin-left: -20px;
     margin-right: -20px;
-    width: calc(100% + 40px); /* Account for container padding */
-}
-
-.nav-button {
-    padding: 12px 30px;
-    background-color: #dbde65;
-    color: black;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 1.1rem;
-    transition: all 0.2s ease;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.nav-button:hover {
-    background-color: transparent;
-    transform: translateY(-2px);
-}
-
-.nav-button:active {
-    transform: translateY(0);
-    box-shadow: none;
+    width: calc(100% + 40px);
 }
 
 .github-button {
@@ -151,7 +205,7 @@ h3 {
 }
 
 .process-description {
-    border: 1px solid #ddd;   
+    border: 1px solid #ddd;
     padding: 20px;
 }
 
@@ -190,8 +244,8 @@ h3 {
     padding: 20px;
     margin: 20px 0;
     background-color: white;
-    position: relative; /* For absolute positioning of the logo */
-    padding-top: 150px; /* Make room for the logo at the top */
+    position: relative;
+    padding-top: 150px;
 }
 
 /* Position the logo at the top of the team container */
@@ -204,7 +258,7 @@ h3 {
     max-width: 500px;
     height: auto;
     margin: 0 auto;
-    display: block;;
+    display: block;
     margin-top: 25px;
 }
 
@@ -296,7 +350,7 @@ h3 {
     text-align: left;
     padding: 4px 10px;
     position: relative;
-    z-index: 1500; /* Higher than the map but lower than the header */
+    z-index: 1500;
 }
 
 .filter-dropdown {
@@ -311,11 +365,11 @@ h3 {
 /* Ensure Choices.js dropdown appears above the map but below the header */
 .choices {
     position: relative;
-    z-index: 1500 !important; /* Higher than the map but lower than the header */
+    z-index: 1500 !important;
 }
 
 .choices__list--dropdown {
-    z-index: 1600 !important; /* Even higher for the dropdown but still below header */
+    z-index: 1600 !important;
     border-radius: 4px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border: 1px solid #e0e0e0;
@@ -324,7 +378,7 @@ h3 {
 /* Style for the selected item in the dropdown */
 .choices__item--selectable {
     display: flex !important;
-    align-items: center !important; /* Vertically center the text */
+    align-items: center !important;
     padding: 10px 15px !important;
     transition: background-color 0.2s ease !important;
 }
@@ -332,13 +386,13 @@ h3 {
 /* Hover effect for dropdown items - using more specific selectors and !important */
 .choices__list--dropdown .choices__item--selectable:hover,
 .choices__list--dropdown .choices__item--selectable:hover.is-highlighted {
-    background-color: #f0f7ff !important; /* Light blue background on hover */
+    background-color: #f0f7ff !important;
     cursor: pointer !important;
 }
 
 /* Active selection styling - using more specific selectors and !important */
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
-    background-color: #e1efff !important; /* Slightly darker blue for the active/highlighted item */
+    background-color: #e1efff !important;
 }
 
 /* Make sure the selected item in the main input is also vertically centered */
@@ -423,7 +477,7 @@ div.choices__list--dropdown {
 
 /* Override any Choices.js internal styles */
 .choices__list--dropdown .choices__item--selectable:after {
-    display: none !important; /* Remove the "Press to select" text */
+    display: none !important;
 }
 
 /* Links styling */
@@ -448,7 +502,7 @@ hr {
 
 section {
     margin-bottom: 40px;
-    scroll-margin-top: 100px; /* Add scroll margin to account for sticky header */
+    scroll-margin-top: 100px;
 }
 
 /* Lists styling */
@@ -510,7 +564,7 @@ li {
 
 /* Footer styling */
 footer {
-    background-color: #21175a;
+    background-color: #3b5664;
     color: #ffffff;
     padding: 0.75rem 0;
     margin-top: 1.5rem;

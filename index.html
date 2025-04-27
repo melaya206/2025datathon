@@ -21,7 +21,10 @@
     <!-- Choices.js for searchable dropdown -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/styles/choices.min.css">
     <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js"></script>
-    
+    <!-- Google Fonts - Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- Override Choices.js styles -->
     <style>
         /* Force hover styles to work */
@@ -115,20 +118,23 @@
 
     <nav class="page-navigation">
         <div class="container">
-            <img class="logo" src="resources/ctrl+alt+elite.png" alt="Logo">
-            <button class="nav-button" onclick="document.getElementById('introduction').scrollIntoView({behavior: 'smooth'})">Introduction</button>
-            <button class="nav-button" onclick="document.getElementById('service-distribution').scrollIntoView({behavior: 'smooth'})">Service Distribution</button>
-            <button class="nav-button" onclick="document.getElementById('geographical-distribution').scrollIntoView({behavior: 'smooth'})">Geographical Distribution</button>
-            <button class="nav-button" onclick="document.getElementById('meet-the-team').scrollIntoView({behavior: 'smooth'})">Meet the Team</button>
+            <img class="logo" src="resources/ctrl+alt+elite-alt.png" alt="Logo">
+            <div class="nav-buttons-container">
+                <button class="nav-button" onclick="document.getElementById('introduction').scrollIntoView({behavior: 'smooth'})">Introduction</button>
+                <button class="nav-button" onclick="document.getElementById('service-distribution').scrollIntoView({behavior: 'smooth'})">Service Distribution</button>
+                <button class="nav-button" onclick="document.getElementById('geographical-distribution').scrollIntoView({behavior: 'smooth'})">Geographical Distribution</button>
+                <button class="nav-button" onclick="document.getElementById('meet-the-team').scrollIntoView({behavior: 'smooth'})">Meet the Team</button>
+            </div>
         </div>
     </nav>
+
+    <img class="bg-image" src="resources/Seattle-Sunset.jpg" alt="Seattle Sunset">
 
     <div class="container">
         <!-- Introduction Section -->
         <section id="introduction">
             <h2>Introduction</h2>
             <div class="process-description">
-                <img src="resources/Seattle-Skyline.jpg" alt="Seattle" style="width: 100%; height: auto;">
                 <p>We began by cleaning the original dataset in R Studio, removing duplicates and incomplete service requests to ensure data quality. For visualization, we built this interactive webpage using HTML, CSS, and JavaScript. Tableau was used to create dynamic dashboards, while Leaflet enabled us to map service requests geographically across Seattle. Additionally, we leveraged Plotly to develop 3D visualizations, highlighting trends by department and council district.</p>
                 <center>
                     <h3>Tools Utilized</h3>
