@@ -36,6 +36,7 @@
     <!-- Navigation Buttons - moved outside container -->
     <nav class="page-navigation">
         <div class="container">
+            <button class="nav-button" onclick="document.getElementById('introduction').scrollIntoView({behavior: 'smooth'})">Introduction</button>
             <button class="nav-button" onclick="document.getElementById('service-distribution').scrollIntoView({behavior: 'smooth'})">Service Distribution</button>
             <button class="nav-button" onclick="document.getElementById('geographical-distribution').scrollIntoView({behavior: 'smooth'})">Geographical Distribution</button>
             <button class="nav-button" onclick="document.getElementById('meet-the-team').scrollIntoView({behavior: 'smooth'})">Meet the Team</button>
@@ -43,6 +44,11 @@
     </nav>
 
     <div class="container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>Example text</p>
+        </section>
+
         <section id="service-distribution">
             <h2>Service Request Distribution</h2>
             
@@ -70,60 +76,53 @@
                 <div class="visualization-note">Note: Clicking on a marker will display the details of the service request</div>
             </div>
 
-            <div class="visualization-container">
-                <div class="visualization-title">Requests by Neighborhood</div>
-                <div class="visualization-description">Geographic distribution of service requests across Seattle neighborhoods</div>
-                <div id="neighborhoodChart"></div>
-            </div>
-
             <p>Identifying areas with the highest service requests (Neighborhoods, Council Districts, ZIP Codes).</p>
         </section>
 
-        <hr>
-
         <!-- Meet the Team Section -->
         <section id="meet-the-team" class="team-section">
-            <div class="container">
-                <h2 style="margin-bottom: 50px;">Meet the Team</h2>
-                
-                <div class="team-container">
-                    <div class="team-member">
-                        <img src="resources/melaya-madrid.png" alt="Melaya Madrid" class="team-member-image">
-                        <h3>Melaya Madrid</h3>
-                        <p class="role">Informatics Undergraduate</p>
-                        <p>Focused on data analysis and visualization</p>
-                        <div class="contact">
-                            <a href="mailto:lamamel@uw.edu">Email</a> | 
-                            <a href="https://www.linkedin.com/in/melaya/" target="_blank">LinkedIn</a>
-                        </div>
+            <h2 style="margin-bottom: 50px;">Meet the Team</h2>
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="resources/melaya-madrid.png" alt="Melaya Madrid" class="team-member-image">
+                    <h3>Melaya Madrid</h3>
+                    <p class="role">Informatics Undergraduate</p>
+                    <p>Focused on data analysis and visualization</p>
+                    <div class="contact">
+                        <a href="mailto:lamamel@uw.edu">Email</a> | 
+                        <a href="https://www.linkedin.com/in/melaya/" target="_blank">LinkedIn</a>
                     </div>
+                </div>
 
-                    <div class="team-member">
-                        <img src="resources/isabel-motta.png" alt="Isabel Motta" class="team-member-image">
-                        <h3>Isabel Motta</h3>
-                        <p class="role">Psychology Undergraduate</p>
-                        <p>Focused on statistical analysis and data visualization</p>
-                        <div class="contact">
-                            <a href="mailto:imotta@uw.edu">Email</a> | 
-                            <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>
-                        </div>
+                <div class="team-member">
+                    <img src="resources/isabel-motta.png" alt="Isabel Motta" class="team-member-image">
+                    <h3>Isabel Motta</h3>
+                    <p class="role">Psychology Undergraduate</p>
+                    <p>Focused on statistical analysis and data visualization</p>
+                    <div class="contact">
+                        <a href="mailto:imotta@uw.edu">Email</a> | 
+                        <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>
                     </div>
-                    
-                    <div class="team-member">
-                        <img src="resources/kyler-tran.png" alt="Kyler Tran" class="team-member-image">
-                        <h3>Kyler Tran</h3>
-                        <p class="role">Infrastructure Engineer</p>
-                        <p>Full-stack developer with expertise in data visualization</p>
-                        <div class="contact">
-                            <a href="mailto:contact@kylerzinbox.com">Email</a> | 
-                            <a href="https://www.linkedin.com/in/kyler-tran/" target="_blank">LinkedIn</a> |
-                            <a href="https://kylertran.com" target="_blank">Portfolio</a>
-                        </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="resources/kyler-tran.png" alt="Kyler Tran" class="team-member-image">
+                    <h3>Kyler Tran</h3>
+                    <p class="role">Infrastructure Engineer</p>
+                    <p>Full-stack developer with expertise in data visualization</p>
+                    <div class="contact">
+                        <a href="mailto:contact@kylerzinbox.com">Email</a> | 
+                        <a href="https://www.linkedin.com/in/kyler-tran/" target="_blank">LinkedIn</a> |
+                        <a href="https://kylertran.com" target="_blank">Portfolio</a>
                     </div>
                 </div>
             </div>
         </section>
-        <hr><hr><hr>
     </div>
+    <footer>
+        <div class="container">
+            <p class="copyright"> Ctrl+Alt+Elite 2025. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

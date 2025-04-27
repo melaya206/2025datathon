@@ -100,9 +100,6 @@ h3 {
     box-shadow: none;
 }
 
-.container > p:first-of-type {
-    margin-top: 30px;
-}
 
 /* Style for the team info box */
 .team-info {
@@ -120,9 +117,7 @@ h3 {
 
 /* Meet the Team section */
 .team-section {
-    padding: 40px 0;
     background-color: #f8f9fa;
-    border-top: 1px solid #e0e0e0;
     margin-top: 40px;
 }
 
@@ -131,7 +126,14 @@ h3 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 40px;
-    margin-top: 30px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    min-height: 400px;
+    text-align: center;
 }
 
 .team-member {
@@ -210,7 +212,7 @@ h3 {
 }
 
 .visualization-note {
-    color: #666;
+    color: #000000;
     margin-bottom: 20px;
     font-size: 0.95rem;
     font-weight: 500;
@@ -296,4 +298,23 @@ li {
 
 .leaflet-popup-content strong {
     color: #2c3e50;
+}
+
+/* Footer styling */
+footer {
+    background-color: #21175a;
+    color: #ffffff;
+    padding: 0.75rem 0;
+    margin-top: 1.5rem;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyright {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
 }
