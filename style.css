@@ -14,6 +14,21 @@ body {
     padding: 20px;
 }
 
+.logo {
+    height: 40px;
+    width: auto;
+    vertical-align: middle;
+    margin-right: 20px;
+    display: block; /* Ensures the image is treated as a block element */
+}
+
+/* Navigation styling with flexbox for better alignment */
+.page-navigation .container {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
 header {
     background-color: lightblue;
     color: #21175a;
@@ -89,6 +104,8 @@ h3 {
     font-weight: 500;
     font-size: 1.1rem;
     transition: all 0.2s ease;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .nav-button:hover {
@@ -280,12 +297,114 @@ h3 {
 
 .choices__list--dropdown {
     z-index: 1600 !important; /* Even higher for the dropdown but still below header */
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+/* Style for the selected item in the dropdown */
+.choices__item--selectable {
+    display: flex !important;
+    align-items: center !important; /* Vertically center the text */
+    padding: 10px 15px !important;
+    transition: background-color 0.2s ease !important;
+}
+
+/* Hover effect for dropdown items - using more specific selectors and !important */
+.choices__list--dropdown .choices__item--selectable:hover,
+.choices__list--dropdown .choices__item--selectable:hover.is-highlighted {
+    background-color: #f0f7ff !important; /* Light blue background on hover */
+    cursor: pointer !important;
+}
+
+/* Active selection styling - using more specific selectors and !important */
+.choices__list--dropdown .choices__item--selectable.is-highlighted {
+    background-color: #e1efff !important; /* Slightly darker blue for the active/highlighted item */
+}
+
+/* Make sure the selected item in the main input is also vertically centered */
+.choices__inner .choices__item--selectable {
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+}
+
+/* Improve the main dropdown container */
+.choices__inner {
+    display: flex !important;
+    align-items: center !important;
+    min-height: 40px !important;
+    padding: 4px 7.5px 4px 3.75px !important;
+    border-radius: 4px !important;
+    border: 1px solid #ddd !important;
+    background-color: #fff !important;
+    transition: border-color 0.2s ease !important;
+}
+
+.choices__inner:hover {
+    border-color: #bbb !important;
 }
 
 .filter-dropdown:focus {
     outline: none;
     border-color: #21175a;
     box-shadow: 0 0 0 2px rgba(33, 23, 90, 0.2);
+}
+
+/* Choices.js Dropdown Styling - Direct Element Targeting */
+
+/* Target the dropdown list items directly */
+div.choices__list--dropdown .choices__item {
+    padding: 10px 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: background-color 0.15s ease !important;
+}
+
+/* Target hover state with higher specificity */
+div.choices__list--dropdown .choices__item--selectable:hover {
+    background-color: #f0f7ff !important;
+}
+
+/* Target the highlighted state with higher specificity */
+div.choices__list--dropdown .choices__item--selectable.is-highlighted {
+    background-color: #e1efff !important;
+}
+
+/* Target the selected item in the main input */
+div.choices__inner .choices__item {
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+}
+
+/* Target the main dropdown container */
+div.choices__inner {
+    display: flex !important;
+    align-items: center !important;
+    min-height: 40px !important;
+    padding: 4px 7.5px 4px 3.75px !important;
+    border-radius: 4px !important;
+    border: 1px solid #ddd !important;
+    background-color: #fff !important;
+    transition: border-color 0.2s ease !important;
+}
+
+div.choices__inner:hover {
+    border-color: #bbb !important;
+}
+
+/* Ensure the dropdown appears above the map */
+div.choices__list--dropdown {
+    z-index: 1600 !important;
+    border-radius: 4px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e0e0e0 !important;
+}
+
+/* Override any Choices.js internal styles */
+.choices__list--dropdown .choices__item--selectable:after {
+    display: none !important; /* Remove the "Press to select" text */
 }
 
 /* Links styling */

@@ -21,6 +21,32 @@
     <!-- Choices.js for searchable dropdown -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/styles/choices.min.css">
     <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js"></script>
+    
+    <!-- Override Choices.js styles -->
+    <style>
+        /* Force hover styles to work */
+        .choices__list--dropdown .choices__item--selectable:hover {
+            background-color: #f0f7ff !important;
+        }
+        
+        /* Force highlighted item styles */
+        .choices__list--dropdown .choices__item--selectable.is-highlighted {
+            background-color: #e1efff !important;
+        }
+        
+        /* Ensure vertical centering */
+        .choices__list--dropdown .choices__item {
+            display: flex !important;
+            align-items: center !important;
+            padding: 10px 15px !important;
+        }
+        
+        /* Remove "Press to select" text */
+        .choices__list--dropdown .choices__item--selectable:after {
+            content: none !important;
+            display: none !important;
+        }
+    </style>
     <!-- Link to the external JavaScript file -->
     <script src="scripts/searchable-dropdown.js"></script>
     <script src="scripts/load-data.js"></script>
@@ -67,13 +93,14 @@
     <header>
         <div class="container">
             <h1 class="header-title">Seattle Customer Service Requests Analysis</h1>
-            <h3 class="header-subtitle">Ctrl+Alt+Elite | DubsTech Datathon 2025</h3>
+            <h3 class="header-subtitle">DubsTech Datathon 2025</h3>
             <button class="github-button" onclick="window.open('https://github.com/melaya206/2025datathon', '_blank')">View on GitHub</button>
         </div>
     </header>
 
     <nav class="page-navigation">
         <div class="container">
+            <img class="logo" src="resources/ctrl+alt+elite.png" alt="Logo">
             <button class="nav-button" onclick="document.getElementById('introduction').scrollIntoView({behavior: 'smooth'})">Introduction</button>
             <button class="nav-button" onclick="document.getElementById('service-distribution').scrollIntoView({behavior: 'smooth'})">Service Distribution</button>
             <button class="nav-button" onclick="document.getElementById('geographical-distribution').scrollIntoView({behavior: 'smooth'})">Geographical Distribution</button>
@@ -89,6 +116,7 @@
                 <img src="resources/Seattle-Skyline.jpg" alt="Seattle" style="width: 100%; height: auto;">
                 <p>We began by cleaning the original dataset in R Studio, removing duplicates and incomplete service requests to ensure data quality. For visualization, we built this interactive webpage using HTML, CSS, and JavaScript. Tableau was used to create dynamic dashboards, while Leaflet enabled us to map service requests geographically across Seattle. Additionally, we leveraged Plotly to develop 3D visualizations, highlighting trends by department and council district.</p>
                 <center>
+                    <h3>Tools Utilized</h3>
                     <img class="tool-logo" src="resources/logos/js.png" alt="JavaScript Logo">
                     <img class="tool-logo" src="resources/logos/Tableau.png" alt="Tableau Logo">
                     <img class="tool-logo" src="resources/logos/RStudio.png" alt="RStudio Logo">
@@ -106,9 +134,8 @@
                 <div class="visualization-title">Department & District Distribution</div>
                 <div class="visualization-description">Heatmap showing the distribution of service requests across city departments and council districts</div>
                 <div id="barChart"></div>
+                <p>Analysis of service requests by department and council district.</p>
             </div>
-
-            <p>Analysis of service requests by department and council district.</p>
         </section>
 
         <!-- Geographical Distribution Section -->
@@ -223,9 +250,8 @@
                     <div id="map" style="height: 100%; width: 100%; z-index: 1;"></div>
                 </div>
                 <div class="visualization-note">Note: Clicking on a marker will display the details of the service request</div>
+                <p>Identifying areas with the highest service requests (Neighborhoods, Council Districts, ZIP Codes).</p>
             </div>
-
-            <p>Identifying areas with the highest service requests (Neighborhoods, Council Districts, ZIP Codes).</p>
         </section>
 
         <!-- Meet the Team Section -->
