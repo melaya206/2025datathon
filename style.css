@@ -203,10 +203,6 @@ h3 {
     box-shadow: none;
 }
 
-.process-description {
-    border: 1px solid #ddd;
-    padding: 20px;
-}
 
 .tool-logo {
     width: 75px;
@@ -239,7 +235,6 @@ h3 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 40px;
-    border: 1px solid #ddd;
     padding: 20px;
     margin: 20px 0;
     background-color: white;
@@ -313,8 +308,6 @@ h3 {
 
 /* Visualization containers */
 .visualization-container {
-    border: 1px solid #ddd;
-    padding: 20px;
     margin: 20px 0;
     background-color: white;
     border-radius: 4px;

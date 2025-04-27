@@ -1,7 +1,5 @@
 # DubsTech Datathon 2025 | Ctrl+Alt+Elite
 
-Prompt: Customer Service Requests
-
 ## Getting Started
 
 Download the repository via the GitHub web interface or by cloning:

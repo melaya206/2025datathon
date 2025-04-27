@@ -129,11 +129,18 @@
                 <button class="nav-button"
                     onclick="document.getElementById('introduction').scrollIntoView({behavior: 'smooth'})">Introduction</button>
                 <button class="nav-button"
-                    onclick="document.getElementById('service-distribution').scrollIntoView({behavior: 'smooth'})">Service
+                    onclick="document.getElementById('dept-visualization-section').scrollIntoView({behavior: 'smooth'})">Department
                     Distribution</button>
+                <button class="nav-button"
+                    onclick="document.getElementById('service-distribution').scrollIntoView({behavior: 'smooth'})">Service
+                    Distribution
+                </button>
                 <button class="nav-button"
                     onclick="document.getElementById('geographical-distribution').scrollIntoView({behavior: 'smooth'})">Geographical
                     Distribution</button>
+                <button class="nav-button"
+                    onclick="document.getElementById('our-process').scrollIntoView({behavior: 'smooth'})">Our
+                    Process</button>
                 <button class="nav-button"
                     onclick="document.getElementById('meet-the-team').scrollIntoView({behavior: 'smooth'})">Meet the
                     Team</button>
@@ -145,7 +152,7 @@
     <div class="hero-section">
         <img src="resources/Seattle-Sunset.jpg" alt="Seattle Skyline" class="hero-image">
         <div class="hero-text">
-            Analyzing the Seattle Resident's Customer Requests
+            Analyzing Seattle Resident's Customer Requests
         </div>
     </div>
 
@@ -154,7 +161,39 @@
         <section id="introduction">
             <h2>Introduction</h2>
             <div class="process-description">
-                <p>INTRODUCTION</p>
+                <p>For the 6th annual DubsTech Datathon, our team tackled the "Government: Analyzing Seattle Resident's
+                    Customer Requests" prompt. This report demonstrates our comprehensive data analysis process while
+                    showcasing an advanced collection of interactive data visualizations.</p>
+                <h3 style="text-align: left;">Which department has the most service requests?</h3>
+                <p class="section-description"
+                    style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    To answer this question, we integrated a 3D line plot into our website using Plotly.js. By
+                    extracting customer
+                    service request data on a per-year and department basis, we effectively illustrate the distribution
+                    of requests across departments over a four-year period. This visualization allows stakeholders to
+                    identify trends in service demand across different city departments and observe how these patterns
+                    have evolved over time.
+                </p>
+                <h3 style="text-align: left;">Total requests by different service types. What trends do we notice for
+                    each service type? Has any particular service type grown over time?</h3>
+                <p class="section-description"
+                    style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    To address this question, we created an interactive and animated bar graph using Tableau. This
+                    dynamic visualization enables stakeholders to observe customer requests over time with adjustable
+                    date viewing options. The animation provides a compelling real-time representation of how service
+                    demands have fluctuated, making it easy to identify emerging patterns and growing service
+                    categories.
+                </p>
+                <h3 style="text-align: left;">Which areas with the highest service requests?</h3>
+                <p class="section-description"
+                    style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    For this analysis, we leveraged public map data from Leaflet.js to visualize service request volumes
+                    across
+                    Seattle's neighborhoods. By implementing an overlapping heatmap, we created an intuitive
+                    visualization that clearly highlights the areas of Seattle generating the most service requests.
+                    This approach reveals concentrated hotspots of resident needs, allowing city officials to better
+                    allocate resources to high-demand areas.
+                </p>
             </div>
         </section>
 
@@ -177,6 +216,21 @@
             <div class="data-visualization">
                 <div id="3d-line-plot" style="height: 600px; width: 100%;"></div>
             </div>
+
+            <h3 style="text-align: left;">Analysis</h3>
+            <p class="section-description"
+                style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                The 3D line plot charts each department’s annual service‐request volume from 2021 through early 2025 as
+                rising colored ribbons, and reveals both scale and growth dynamics at a glance. In 2022, the Department
+                of Transportation ribbon spikes noticeably—reflecting a wave of pandemic‐era infrastructure investments
+                and street‐repair programs that generated a surge in potholes, signage, and traffic‐signal complaints.
+                By 2024, the Seattle Police Department ribbon soars highest of all—driven by heightened public attention
+                to neighborhood safety following high-profile incidents. In contrast, Seattle Public Utilities and
+                smaller departments like Parks & Recreation and Solid Waste display steadier, more modest climbs,
+                indicating that their service demands remained relatively stable and predictable throughout the period.
+                The 3D perspective makes it easy to spot crossover points, illuminating not just raw totals but how
+                departmental requests shift year by year.
+            </p>
         </section>
 
         <!-- Service Request Distribution Section -->
@@ -193,10 +247,6 @@
             </p>
 
             <div class="visualization-container">
-                <div class="visualization-title">Customer Service Request Distribution Over 4 Years</div>
-                <div class="visualization-description">Trends in Seattle service requests show steady illegal parking
-                    reports, public spacce issues, and seasonal patterns</div>
-
                 <div class='tableauPlaceholder' id='viz1745751512986' style='position: relative'>
                     <noscript>
                         <a href='#'><img alt='Customer Requests Over Time by Month - December 2021 '
@@ -229,7 +279,7 @@
                     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
                     vizElement.parentNode.insertBefore(scriptElement, vizElement);                
                 </script>
-                <h3 style="text-align: left;">Notable Trends</h3>
+                <h3 style="text-align: left;">Analysis</h3>
                 <div style="text-align: left;">
                     <strong>Unauthorized Encampment</strong> was first reported in July 2022 with 4,343 requests, but
                     grew to be the
@@ -256,10 +306,6 @@
                     seasonal fluctuations,
                     often peaking during winter and early spring months — a pattern that aligns with weather-related
                     infrastructure damage.
-                </div>
-
-                <h3 style="text-align: left;">Overall Insights</h3>
-                <div style="text-align: left;">
                     Several service types exhibit seasonal variation, hinting at environmental or behavioral influences
                     on request volumes.
                     Unauthorized Encampment, Abandoned Vehicle, and Graffiti Removal requests show the most significant
@@ -279,11 +325,17 @@
         <!-- Geographical Distribution Section -->
         <section id="geographical-distribution">
             <h2>Geographical Distribution</h2>
-
+            <p>
+                This interactive map displays the 2000 most recent customer service requests per neighborhood submitted
+                to the City of Seattle, plotted at its geographic coordinates and aggregated into a color‐coded density
+                layer. Areas with more requests glow hotter, making it easy to see which neighborhoods generate the most
+                demand. The default selection is for all neighborhoods, but a filter lets you isolate and compare
+                request patterns for any selected area. Hover tooltips reveal exact request information, including
+                request type, department, date created, location, neighborhood, zip code, and police precinct. Pan/zoom
+                controls allow detailed exploration at any scale. Together, these features help pinpoint where city
+                services are most needed. Clicking on a marker will display the details of the service request.
+            </p>
             <div class="visualization-container">
-                <div class="visualization-title">Geographical Distribution of Service Requests</div>
-                <div class="visualization-description">Heatmap showing the distribution of service requests across
-                    Seattle</div>
                 <div class="filter-container">
                     <label for="request-neighborhood-filter">Filter by neighborhood: </label>
                     <select id="request-neighborhood-filter" class="filter-dropdown">
@@ -385,11 +437,9 @@
                 <div class="map-container" style="position: relative; height: 500px; width: 100%;">
                     <div id="map" style="height: 100%; width: 100%; z-index: 1;"></div>
                 </div>
-                <div class="visualization-note">Note: Clicking on a marker will display the details of the service
-                    request</div>
                 <h3 style="text-align: left;">Analysis</h3>
-
-                <p class="section-description" style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                <p class="section-description"
+                    style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
                     The geographical heat map aligns closely with Seattle’s population‐density pattern: the brightest
                     hotspots—Downtown/Central Business District, Capitol Hill, University District and Belltown—are also
                     the city’s densest neighborhoods. In these areas, high foot traffic and resident counts naturally
@@ -397,14 +447,9 @@
                     also glow intensely—indicating that rapid commercial development and construction further amplify
                     demand beyond what population alone would predict. In contrast, low‐density outlying neighborhoods
                     like Broadview, North Beach/Blue Ridge and Fauntleroy show sparse requests, mirroring their smaller
-                    resident bases. A few mid-density areas (e.g. Rainier Beach, North Beacon Hill) reveal pronounced
-                    summer peaks—suggesting that seasonal population surges (tourism, events) can temporarily elevate
-                    service needs. Overall, this comparison shows that while raw population density is the primary
-                    driver of request volume, non-residential activity and seasonal flows create noteworthy deviations
+                    resident bases. Overall, this comparison shows that while raw population density is the primary
+                    driver of request volume, non-residential activity creates noteworthy deviations
                 </p>
-                <div style="text-align: left;">
-
-                </div>
             </div>
         </section>
 
@@ -418,44 +463,51 @@
                     service requests geographically across Seattle. Additionally, we leveraged Plotly to develop 3D
                     visualizations, highlighting trends by department and council district.
                 </p>
-                <h3 style="text-align: left;">Clean the Data</h3>
-                <p class="section-description" style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
-                    Filter out any rows flagged as duplicates. Overwrite the cleaned data frame and run glimpse() to
-                    confirm the duplicate rows are gone.
+                <h3 style="text-align: left;">Cleaning the Data</h3>
+                <p class="section-description"
+                    style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    We filtered out any rows flagged as duplicates, overwrote the cleaned data frame, and ran
+                    glimpse() to confirm the duplicate rows were gone.
                 </p>
                 <img class="code-screenshot" src="resources/code-screenshots/clean_up_data.png" alt="Code Screenshot">
-                <h3 style="text-align: left;">Select Relevant Features</h3>
-                <p class="section-description" style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
-                    Streamline the data by subsetting the cleaned frame to include only the essential fields—Service
+                <h3 style="text-align: left;">Selecting Relevant Features</h3>
+                <p class="section-description"
+                    style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    We streamlined the data by subsetting the cleaned frame to include only the essential fields—Service
                     Request Type, City Department, Date Created, Location, Service Request Number, Latitude, Longitude,
-                    ZIP Code, Police Precinct, and Neighborhood—overwrite the existing object, then run glimpse() to
+                    ZIP Code, Police Precinct, and Neighborhood—overwrote the existing object, then ran glimpse() to
                     confirm that only those columns remain.
                 </p>
-                <img class="code-screenshot" src="resources/code-screenshots/select_relevant_features.png" alt="Code Screenshot">
-                <h3 style="text-align: left;">Create New Features</h3>
-                <p class="section-description" style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
-                    Split the original Date Created character string into two new columns—Date (as a Date object) and
-                    Time (as a time or POSIXct)—to easily aggregate and plot by day, hour, etc. Overwrite the data frame
-                    and run glimpse() to check these new fields, which will ensure our Tableau histogram‐race animation
-                    can smoothly step through each time bucket.
+                <img class="code-screenshot" src="resources/code-screenshots/select_relevant_features.png"
+                    alt="Code Screenshot">
+                <h3 style="text-align: left;">Creating New Features</h3>
+                <p class="section-description"
+                    style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    We split the original Date Created character string into two new columns—Date (as a Date object) and
+                    Time (as a time or POSIXct)—to easily aggregate and plot by day, hour, etc. We overwrote the data
+                    frame and ran glimpse() to check these new fields, which will ensure our Tableau histogram‐race
+                    animation can smoothly step through each time bucket.
                 </p>
                 <img class="code-screenshot" src="resources/code-screenshots/create_features.png" alt="Code Screenshot">
-                <h3 style="text-align: left;">Create New Files</h3>
-                <p class="section-description" style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
-                    For each distinct neighborhood, take the 2,000 most recent requests, create a separate data frame,
-                    and write it out as a CSV (e.g. Capitol_Hill.csv). These per-neighborhood CSVs will simplify
-                    building the Geographical Distribution of Service Requests heat map.
+                <h3 style="text-align: left;">Creating New Files</h3>
+                <p class="section-description"
+                    style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    We created a new file for each distinct neighborhood, taking the 2,000 most recent requests, creating a
+                    separate data frame, and writing it out as a CSV (e.g. Capitol_Hill.csv). These per-neighborhood
+                    CSVs simplified building the Geographical Distribution of Service Requests heat map.
                 </p>
                 <img class="code-screenshot" src="resources/code-screenshots/create_files.png" alt="Code Screenshot">
-                <h3 style="text-align: left;">Aggregate Annual Departmental Requests</h3>
-                <p class="section-description" style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
-                    Parse each request’s timestamp into a proper date‐time object and use lubridate to pull out the
-                    calendar year. Group the cleaned dataset by City Department and Year, and tallied the number of
+                <h3 style="text-align: left;">Aggregating Annual Departmental Requests</h3>
+                <p class="section-description"
+                    style="text-align: left; margin-left: 0; padding-left: 0; max-width: 100%; text-indent: 0;">
+                    We parsed each request’s timestamp into a proper date‐time object and used lubridate to pull out the
+                    calendar year. We grouped the cleaned dataset by City Department and Year, and tallied the number of
                     requests in each group with dplyr’s count() function. This produced a tidy summary table—one row per
                     department‐year with its total requests—which we then fed into our 3D line plot, allowing us to
                     trace each department’s workload trajectory over time in three dimensions.
                 </p>
-                <img class="code-screenshot" src="resources/code-screenshots/aggregate_dept_requests.png" alt="Code Screenshot">
+                <img class="code-screenshot" src="resources/code-screenshots/aggregate_dept_requests.png"
+                    alt="Code Screenshot">
                 <center>
                     <h3>Tools Utilized</h3>
                     <img class="tool-logo" src="resources/logos/js.png" alt="JavaScript Logo">
@@ -475,7 +527,7 @@
                 <div class="team-member">
                     <img src="resources/headshots/melaya-madrid.png" alt="Melaya La Madrid" class="team-member-image">
                     <h3>Melaya La Madrid</h3>
-                    <p class="role">Informatics Undergraduate</p>
+                    <p class="role">Informatics Undergraduate @ UW</p>
                     <p>Focused on data wrangling, analysis, and visualization</p>
                     <div class="contact">
                         <a href="mailto:lamamel@uw.edu">Email</a> |
@@ -486,8 +538,8 @@
                 <div class="team-member">
                     <img src="resources/headshots/isabel-motta.png" alt="Isabel Motta" class="team-member-image">
                     <h3>Isabel Motta</h3>
-                    <p class="role">Psychology Undergraduate</p>
-                    <p>Focused on data cleaning and statistical analysis</p>
+                    <p class="role">Psychology Undergraduate @ UW</p>
+                    <p>Focused on data cleaning and analysis</p>
                     <div class="contact">
                         <a href="mailto:imotta@uw.edu">Email</a> |
                         <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>
@@ -497,8 +549,8 @@
                 <div class="team-member">
                     <img src="resources/headshots/kyler-tran.png" alt="Kyler Tran" class="team-member-image">
                     <h3>Kyler Tran</h3>
-                    <p class="role">Infrastructure Engineer</p>
-                    <p>Full-stack developer with expertise in data visualization</p>
+                    <p class="role">Infrastructure Engineer @ Qualitel</p>
+                    <p>Focused on developing the interactive data visualizations</p>
                     <div class="contact">
                         <a href="mailto:contact@kylerzinbox.com">Email</a> |
                         <a href="https://www.linkedin.com/in/kyler-tran/" target="_blank">LinkedIn</a> |
