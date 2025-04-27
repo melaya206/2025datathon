@@ -46,6 +46,21 @@
             content: none !important;
             display: none !important;
         }
+        
+        /* Fix hover effect to work immediately */
+        .choices__list--dropdown .choices__item--selectable {
+            transition: none !important; /* Remove transition to make hover immediate */
+        }
+        
+        /* Apply hover styles to all items in the dropdown */
+        .choices.is-open .choices__list--dropdown .choices__item--selectable:hover {
+            background-color: #f0f7ff !important;
+        }
+        
+        /* Force hover styles with JavaScript */
+        .choices__item--hover {
+            background-color: #f0f7ff !important;
+        }
     </style>
     <!-- Link to the external JavaScript file -->
     <script src="scripts/searchable-dropdown.js"></script>
@@ -90,13 +105,13 @@
     </style>
 </head>
 <body>
-    <header>
+    <!--header>
         <div class="container">
             <h1 class="header-title">Seattle Customer Service Requests Analysis</h1>
             <h3 class="header-subtitle">DubsTech Datathon 2025</h3>
             <button class="github-button" onclick="window.open('https://github.com/melaya206/2025datathon', '_blank')">View on GitHub</button>
         </div>
-    </header>
+    </header-->
 
     <nav class="page-navigation">
         <div class="container">
@@ -258,6 +273,7 @@
         <section id="meet-the-team" class="team-section">
             <h2 style="margin-bottom: 50px;">Meet the Team</h2>
             <div class="team-container">
+                <img src="resources/ctrl+alt+elite-alt.png" alt="Logo" class="logo-big">
                 <div class="team-member">
                     <img src="resources/headshots/melaya-madrid.png" alt="Melaya Madrid" class="team-member-image">
                     <h3>Melaya Madrid</h3>
@@ -273,7 +289,7 @@
                     <img src="resources/headshots/isabel-motta.png" alt="Isabel Motta" class="team-member-image">
                     <h3>Isabel Motta</h3>
                     <p class="role">Psychology Undergraduate</p>
-                    <p>Focused on statistical analysis and data visualization</p>
+                    <p>Focused on data cleaning and statistical analysis</p>
                     <div class="contact">
                         <a href="mailto:imotta@uw.edu">Email</a> | 
                         <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>

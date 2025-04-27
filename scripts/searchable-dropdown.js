@@ -109,15 +109,67 @@ function initSearchableDropdown(elementId, data, fieldName, onChangeCallback) {
         });
         
         // Add event listener for when a choice is made
-        if (onChangeCallback && typeof onChangeCallback === 'function') {
-            dropdown.addEventListener('change', onChangeCallback);
-        }
+        dropdown.addEventListener('change', function() {
+            if (onChangeCallback && typeof onChangeCallback === 'function') {
+                onChangeCallback(dropdown.value);
+            }
+        });
         
-        return choicesInstance;
+        // Add hover effect enhancement
+        enhanceChoicesHoverEffect();
+        
+        console.log("Searchable dropdown initialized");
     } catch (error) {
         console.error("Error initializing searchable dropdown:", error);
-        return null;
     }
+}
+
+/**
+ * Enhance the hover effect for Choices.js dropdown items
+ */
+function enhanceChoicesHoverEffect() {
+    // Wait for the dropdown to be fully initialized
+    setTimeout(() => {
+        // Add event listener for dropdown opening
+        document.addEventListener('click', function(e) {
+            // Check if dropdown is open
+            const dropdowns = document.querySelectorAll('.choices.is-open');
+            if (dropdowns.length > 0) {
+                // For each open dropdown
+                dropdowns.forEach(dropdown => {
+                    // Get all dropdown items
+                    const items = dropdown.querySelectorAll('.choices__item--selectable');
+                    
+                    // Add mouseenter and mouseleave event listeners to each item
+                    items.forEach(item => {
+                        // Remove existing listeners to prevent duplicates
+                        item.removeEventListener('mouseenter', handleMouseEnter);
+                        item.removeEventListener('mouseleave', handleMouseLeave);
+                        
+                        // Add new listeners
+                        item.addEventListener('mouseenter', handleMouseEnter);
+                        item.addEventListener('mouseleave', handleMouseLeave);
+                    });
+                });
+            }
+        });
+    }, 100);
+}
+
+/**
+ * Handle mouseenter event for dropdown items
+ */
+function handleMouseEnter(e) {
+    e.target.style.backgroundColor = '#f0f7ff';
+    e.target.classList.add('choices__item--hover');
+}
+
+/**
+ * Handle mouseleave event for dropdown items
+ */
+function handleMouseLeave(e) {
+    e.target.style.backgroundColor = '';
+    e.target.classList.remove('choices__item--hover');
 }
 
 /**
