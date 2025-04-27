@@ -1,7 +1,8 @@
 // Use window load event instead of DOMContentLoaded to ensure all resources are loaded
 window.addEventListener('load', function() {
     console.log("Window fully loaded, initializing map...");
-    initMap();
+    // Add a slight delay to ensure the DOM is fully rendered with proper dimensions
+    setTimeout(initMap, 1000); // Increased delay for better reliability
 });
 
 // Global map variable
@@ -11,17 +12,16 @@ function initMap() {
     try {
         console.log("Starting map initialization");
         
-        // Get the map container
+        // Get the map container and loading indicator
         const mapContainer = document.getElementById('map');
+        const loadingIndicator = document.getElementById('map-loading-indicator');
         
-        // Add loading indicator
-        if (mapContainer) {
-            mapContainer.innerHTML = '<div class="loading-indicator">Loading map data...</div>';
-            console.log("Map container dimensions:", mapContainer.offsetWidth, "x", mapContainer.offsetHeight);
-        } else {
+        if (!mapContainer) {
             console.error("Map container not found!");
             return;
         }
+        
+        console.log("Map container dimensions:", mapContainer.offsetWidth, "x", mapContainer.offsetHeight);
         
         // Create the map with a slight delay to ensure container is ready
         setTimeout(function() {
@@ -42,13 +42,29 @@ function initMap() {
                 // Force a resize
                 seattleMap.invalidateSize(true);
                 
-                // Load data
-                loadMapData();
+                // Update loading indicator text
+                if (loadingIndicator) {
+                    loadingIndicator.innerHTML = 'Waiting for data...';
+                }
+                
+                // Load data from the centralized data loader
+                onDataLoaded(function(data) {
+                    console.log("Map received centralized data");
+                    processMapData(data);
+                    
+                    // Hide loading indicator when data is processed
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                });
                 
                 console.log("Map initialized successfully");
             } catch (e) {
                 console.error("Error during map initialization:", e);
-                mapContainer.innerHTML = '<div class="error-message">Error initializing map: ' + e.message + '</div>';
+                if (loadingIndicator) {
+                    loadingIndicator.innerHTML = 'Error initializing map: ' + e.message;
+                    loadingIndicator.classList.add('error-message');
+                }
             }
         }, 500);
     } catch (e) {
@@ -56,25 +72,16 @@ function initMap() {
     }
 }
 
-function loadMapData() {
-    console.log("Loading data for map...");
-    
-    d3.csv('./dataset/Customer_Service_Requests_20250426.csv')
-        .then(function(data) {
-            console.log("CSV data loaded, processing for map...");
-            processMapData(data);
-        })
-        .catch(function(error) {
-            console.error("Error loading CSV data:", error);
-            document.getElementById('map').innerHTML = 
-                '<div class="error-message">Error loading data: ' + error.message + '</div>';
-        });
-}
-
 function processMapData(data) {
     try {
         console.log("Processing map data...");
         console.log("Sample data record:", data[0]); // Log a sample record to check field names
+        
+        // Get the loading indicator
+        const loadingIndicator = document.getElementById('map-loading-indicator');
+        if (loadingIndicator) {
+            loadingIndicator.innerHTML = 'Processing map data...';
+        }
         
         // Filter out records without valid coordinates
         const validData = data.filter(d => {
@@ -105,7 +112,7 @@ function processMapData(data) {
             
             if (validDataAlt.length > 0) {
                 // Use the alternative data if found
-                const displayData = validDataAlt.slice(0, 2000);
+                const displayData = validDataAlt.slice(0, 2000); 
                 createMapVisualization(displayData, 'latitude', 'longitude');
                 return;
             }
@@ -147,8 +154,10 @@ function processMapData(data) {
             }
             
             // If we still have no valid data, show an error
-            document.getElementById('map').innerHTML = 
-                '<div class="error-message">No valid coordinate data found in the dataset. Please check the data format.</div>';
+            if (loadingIndicator) {
+                loadingIndicator.innerHTML = 'No valid coordinate data found in the dataset. Please check the data format.';
+                loadingIndicator.classList.add('error-message');
+            }
             return;
         }
         
@@ -159,8 +168,11 @@ function processMapData(data) {
         createMapVisualization(displayData, 'Latitude', 'Longitude');
     } catch (e) {
         console.error("Error processing map data:", e);
-        document.getElementById('map').innerHTML = 
-            '<div class="error-message">Error processing map data: ' + e.message + '</div>';
+        const loadingIndicator = document.getElementById('map-loading-indicator');
+        if (loadingIndicator) {
+            loadingIndicator.innerHTML = 'Error processing map data: ' + e.message;
+            loadingIndicator.classList.add('error-message');
+        }
     }
 }
 

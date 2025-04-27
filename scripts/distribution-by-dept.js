@@ -1,24 +1,20 @@
-// Load the CSV file and create the chart with all data
-d3.csv('./dataset/Customer_Service_Requests_20250426.csv')
-  .then(function(data) {
-    // Show loading indicator
-    document.getElementById('barChart').innerHTML = 
-      '<div class="loading-indicator">Loading and processing data... This may take a moment.</div>';
-    
-    console.log(`Loaded ${data.length} rows of data`);
-    console.log("Sample data row:", data[0]); // Log a sample row to see column names
+// Wait for the centralized data loading
+document.addEventListener('DOMContentLoaded', function() {
+  // Show loading indicator
+  document.getElementById('barChart').innerHTML = 
+    '<div class="loading-indicator">Waiting for data...</div>';
+  
+  // Register for data load
+  onDataLoaded(function(data) {
+    console.log("Department chart received centralized data");
     
     // Use setTimeout to allow the loading message to render before processing
     setTimeout(() => {
       // Now create the chart with this data
       createDepartmentDistrictChart(data);
     }, 100);
-  })
-  .catch(function(error) {
-    console.error("Error loading CSV file:", error);
-    document.getElementById('barChart').innerHTML = 
-      '<p class="error-message">Error loading data: ' + error.message + '</p>';
   });
+});
 
 // Function to create the 3D visualization
 function createDepartmentDistrictChart(data) {
