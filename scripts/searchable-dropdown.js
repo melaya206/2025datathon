@@ -20,37 +20,37 @@ function initSearchableDropdown(elementId, data, fieldName, onChangeCallback) {
         console.error(`Element with ID ${elementId} not found`);
         return;
     }
-    
+
     try {
         // Get unique values from the data using the specified field
         const uniqueValues = [...new Set(data
             .filter(d => d[fieldName] && d[fieldName].trim() !== '')
             .map(d => d[fieldName]))]
             .sort();
-        
+
         console.log(`Found ${uniqueValues.length} unique values for ${fieldName}`);
-        
+
         // Prepare choices options
         const choicesOptions = [];
-        
+
         // Check if the dropdown already has an "All neighborhoods" option
-        const hasAllOption = Array.from(dropdown.options).some(option => 
+        const hasAllOption = Array.from(dropdown.options).some(option =>
             option.value === 'all' && (option.text === 'All neighborhoods' || option.text === 'All Request Types')
         );
-        
+
         // Only add the "All" option if it doesn't already exist
         if (!hasAllOption) {
             choicesOptions.push({ value: 'all', label: 'All neighborhoods' });
         }
-        
+
         // Add the unique values
         choicesOptions.push(...uniqueValues.map(value => ({ value: value, label: value })));
-        
+
         // Destroy existing Choices instance if it exists
         if (choicesInstance) {
             choicesInstance.destroy();
         }
-        
+
         // Initialize Choices.js
         choicesInstance = new Choices(dropdown, {
             choices: choicesOptions,
@@ -107,17 +107,17 @@ function initSearchableDropdown(elementId, data, fieldName, onChangeCallback) {
                 noChoices: 'has-no-choices'
             }
         });
-        
+
         // Add event listener for when a choice is made
-        dropdown.addEventListener('change', function() {
+        dropdown.addEventListener('change', function () {
             if (onChangeCallback && typeof onChangeCallback === 'function') {
                 onChangeCallback(dropdown.value);
             }
         });
-        
+
         // Add hover effect enhancement
         enhanceChoicesHoverEffect();
-        
+
         console.log("Searchable dropdown initialized");
     } catch (error) {
         console.error("Error initializing searchable dropdown:", error);
@@ -131,7 +131,7 @@ function enhanceChoicesHoverEffect() {
     // Wait for the dropdown to be fully initialized
     setTimeout(() => {
         // Add event listener for dropdown opening
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             // Check if dropdown is open
             const dropdowns = document.querySelectorAll('.choices.is-open');
             if (dropdowns.length > 0) {
@@ -139,13 +139,13 @@ function enhanceChoicesHoverEffect() {
                 dropdowns.forEach(dropdown => {
                     // Get all dropdown items
                     const items = dropdown.querySelectorAll('.choices__item--selectable');
-                    
+
                     // Add mouseenter and mouseleave event listeners to each item
                     items.forEach(item => {
                         // Remove existing listeners to prevent duplicates
                         item.removeEventListener('mouseenter', handleMouseEnter);
                         item.removeEventListener('mouseleave', handleMouseLeave);
-                        
+
                         // Add new listeners
                         item.addEventListener('mouseenter', handleMouseEnter);
                         item.addEventListener('mouseleave', handleMouseLeave);

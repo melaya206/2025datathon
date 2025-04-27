@@ -1,5 +1,5 @@
 // Use window load event instead of DOMContentLoaded to ensure all resources are loaded
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     console.log("Window fully loaded, initializing map...");
     // Add a slight delay to ensure the DOM is fully rendered with proper dimensions
     setTimeout(initMap, 1000); // Increased delay for better reliability
@@ -31,60 +31,60 @@ function ensureMapLoadingIndicator() {
 function initMap() {
     try {
         console.log("Initializing map...");
-        
+
         // Check if map is already initialized
         if (mapInitialized) {
             console.log("Map already initialized, skipping initialization");
             return;
         }
-        
+
         // Get the map container
         const mapContainer = document.getElementById('map');
         if (!mapContainer) {
             console.error("Map container not found");
             return;
         }
-        
+
         // Ensure we have a loading indicator
         ensureMapLoadingIndicator();
-        
+
         // Get the loading indicator
         const loadingIndicator = document.getElementById('map-loading-indicator');
         if (loadingIndicator) {
             loadingIndicator.style.display = 'flex';
             loadingIndicator.textContent = 'Initializing map...';
         }
-        
+
         // Check if the map container has dimensions
         if (mapContainer.offsetWidth === 0 || mapContainer.offsetHeight === 0) {
             console.log("Map container has no dimensions, waiting...");
-            
+
             // Wait for the container to have dimensions
-            setTimeout(function() {
+            setTimeout(function () {
                 initMap();
             }, 100);
             return;
         }
-        
+
         // Initialize the map
         try {
             if (!seattleMap) {
                 seattleMap = L.map('map').setView([47.6062, -122.3321], 12);
-                
+
                 // Add the tile layer (map background)
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(seattleMap);
-                
+
                 // Initialize the marker cluster group
                 markerClusterGroup = L.markerClusterGroup();
                 seattleMap.addLayer(markerClusterGroup);
-                
+
                 // Mark the map as initialized
                 mapInitialized = true;
-                
+
                 console.log("Map initialized successfully");
-                
+
                 // Load the default ALL.csv data immediately
                 loadNeighborhoodData("ALL.csv");
             }
@@ -105,34 +105,34 @@ function initMap() {
  */
 function loadNeighborhoodData(neighborhoodFile) {
     console.log(`Loading data for neighborhood: ${neighborhoodFile}`);
-    
+
     // Ensure we have a loading indicator
     ensureMapLoadingIndicator();
-    
+
     // Show loading indicator
     const loadingIndicator = document.getElementById('map-loading-indicator');
     if (loadingIndicator) {
         loadingIndicator.style.display = 'flex';
         loadingIndicator.textContent = `Loading data for ${neighborhoodFile.replace('.csv', '')}...`;
     }
-    
+
     // Reset map view to Seattle
     if (seattleMap) {
         seattleMap.setView([47.6062, -122.3321], 12);
     }
-    
+
     // Construct the file path
     const filePath = `dataset/neighborhood-data/${neighborhoodFile}`;
     console.log(`Attempting to load: ${filePath}`);
-    
+
     // Load the CSV file for the selected neighborhood
     d3.csv(filePath)
         .then(data => {
             console.log(`Successfully loaded ${data.length} records from ${filePath}`);
-            
+
             // Process the data and update the map
             processNeighborhoodData(data);
-            
+
             // Hide loading indicator
             if (loadingIndicator) {
                 loadingIndicator.style.display = 'none';
@@ -140,7 +140,7 @@ function loadNeighborhoodData(neighborhoodFile) {
         })
         .catch(error => {
             console.error(`Error loading CSV file ${filePath}:`, error);
-            
+
             // Try loading sample data if available
             tryLoadSampleData(neighborhoodFile, loadingIndicator);
         });
@@ -152,16 +152,16 @@ function loadNeighborhoodData(neighborhoodFile) {
 function filterMapByNeighborhood() {
     const selectedValue = getSelectedValue('request-neighborhood-filter');
     const formattedValue = selectedValue.replace(/^dataset\/neighborhood-data\//, '');
-    
+
     // If the value hasn't changed, don't reload
     if (formattedValue === currentNeighborhoodValue) {
         console.log(`Already showing data for ${formattedValue}`);
         return;
     }
-    
+
     // Update the current neighborhood value
     currentNeighborhoodValue = formattedValue;
-    
+
     // Load the selected neighborhood data
     loadNeighborhoodData(formattedValue);
 }
@@ -171,18 +171,18 @@ function filterMapByNeighborhood() {
  */
 function tryLoadSampleData(neighborhood, loadingIndicator) {
     console.log(`Attempting to load sample data for ${neighborhood}...`);
-    
+
     if (loadingIndicator) {
         loadingIndicator.textContent = `Actual data not found, loading sample data for ${neighborhood.replace('.csv', '')}...`;
     }
-    
+
     // Generate some sample data for testing
     const sampleData = [];
     for (let i = 0; i < 50; i++) {
         // Generate random coordinates within Seattle area
         const lat = 47.5 + Math.random() * 0.2;
         const lng = -122.4 + Math.random() * 0.2;
-        
+
         sampleData.push({
             latitude: lat,
             longitude: lng,
@@ -196,10 +196,10 @@ function tryLoadSampleData(neighborhood, loadingIndicator) {
             zipcode: ['98101', '98102', '98103', '98104', '98105'][Math.floor(Math.random() * 5)]
         });
     }
-    
+
     console.log(`Generated ${sampleData.length} sample records`);
     processNeighborhoodData(sampleData);
-    
+
     if (loadingIndicator) {
         loadingIndicator.style.display = 'none';
     }
@@ -214,18 +214,18 @@ function processNeighborhoodData(data) {
     try {
         console.log("Processing neighborhood data...");
         console.log("Sample data record:", data[0]); // Log a sample record to check field names
-        
+
         // Store the data globally for potential reuse
         allMapData = [...data];
-        
+
         // Filter out records without valid coordinates
         const validData = data.filter(d => {
             // Check if latitude and longitude exist and are valid numbers
-            return d.Latitude && d.Longitude && 
-                !isNaN(parseFloat(d.Latitude)) && 
+            return d.Latitude && d.Longitude &&
+                !isNaN(parseFloat(d.Latitude)) &&
                 !isNaN(parseFloat(d.Longitude));
         });
-        
+
         if (validData.length === 0) {
             console.log("No valid data with coordinates");
             const loadingIndicator = document.getElementById('map-loading-indicator');
@@ -235,12 +235,12 @@ function processNeighborhoodData(data) {
             }
             return;
         }
-        
+
         console.log(`Found ${validData.length} records with valid coordinates`);
-        
+
         // Limit to a reasonable number of points for performance
         const displayData = validData.slice(0, 2000);
-        
+
         // Update the map visualization
         createMapVisualization(displayData, 'Latitude', 'Longitude');
     } catch (error) {
@@ -256,13 +256,13 @@ function processNeighborhoodData(data) {
 function createMapVisualization(data, latField, lngField) {
     try {
         console.log(`Creating visualization with fields: ${latField}, ${lngField}`);
-        
+
         // Ensure map is valid
         if (!seattleMap) {
             console.error("Map not initialized!");
             return;
         }
-        
+
         // Clear existing layers
         if (markerClusterGroup) {
             seattleMap.removeLayer(markerClusterGroup);
@@ -270,25 +270,25 @@ function createMapVisualization(data, latField, lngField) {
         if (heatLayer) {
             seattleMap.removeLayer(heatLayer);
         }
-        
+
         // Create a marker cluster group
         markerClusterGroup = L.markerClusterGroup();
-        
+
         // Log a sample data point to see the available fields
         if (data.length > 0) {
             console.log("Sample data point for popup:", data[0]);
         }
-        
+
         // Add markers for each service request
-        data.forEach(function(d) {
+        data.forEach(function (d) {
             try {
                 const lat = parseFloat(d[latField]);
                 const lng = parseFloat(d[lngField]);
-                
+
                 if (isNaN(lat) || isNaN(lng)) {
                     return; // Skip invalid coordinates
                 }
-                
+
                 // Create popup content with request details using the correct column names
                 const popupContent = `
                     <strong>Service Request Type:</strong> ${d["Service.Request.Type"] || 'Not specified'}<br>
@@ -299,7 +299,7 @@ function createMapVisualization(data, latField, lngField) {
                     <strong>ZIP Code:</strong> ${d["ZIP.Code"] || 'Not specified'}<br>
                     <strong>Police Precinct:</strong> ${d["Police.Precinct"] || 'Not specified'}
                 `;
-                
+
                 // Add marker to the cluster group
                 var marker = L.marker([lat, lng]).bindPopup(popupContent);
                 markerClusterGroup.addLayer(marker);
@@ -307,10 +307,10 @@ function createMapVisualization(data, latField, lngField) {
                 console.error("Error creating marker:", e);
             }
         });
-        
+
         // Add the marker cluster group to the map
         seattleMap.addLayer(markerClusterGroup);
-        
+
         // Try to create a heatmap if we have enough points
         try {
             if (data.length > 0) {
@@ -318,32 +318,32 @@ function createMapVisualization(data, latField, lngField) {
                 const heatData = data.map(d => {
                     return [parseFloat(d[latField]), parseFloat(d[lngField]), 1];
                 });
-                
+
                 // Create the heat layer
                 heatLayer = L.heatLayer(heatData, {
                     radius: 25,
                     blur: 15,
                     maxZoom: 17
                 });
-                
+
                 var baseLayers = {
                     "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
                 };
-                
+
                 var overlays = {
                     "Markers": markerClusterGroup,
                     "Heat Map": heatLayer
                 };
-                
+
                 // Remove any existing layer controls
                 const controls = document.getElementsByClassName('leaflet-control-layers');
                 while (controls.length > 0) {
                     controls[0].remove();
                 }
-                
+
                 // Add layer control
                 L.control.layers(baseLayers, overlays).addTo(seattleMap);
-                
+
                 // Start with the heatmap visible
                 seattleMap.addLayer(heatLayer);
                 console.log("Heatmap added to map");
@@ -359,12 +359,12 @@ function createMapVisualization(data, latField, lngField) {
 /**
  * Initialize the map when the page loads
  */
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log("DOM content loaded, setting up map and dropdown");
-    
+
     // Initialize the map only once
     initMap();
-    
+
     // Initialize the searchable dropdown
     const dropdown = document.getElementById('request-neighborhood-filter');
     if (dropdown) {
@@ -379,9 +379,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 shouldSort: false
             });
             console.log("Searchable dropdown initialized");
-            
+
             // Add event listener for dropdown changes
-            dropdown.addEventListener('change', function() {
+            dropdown.addEventListener('change', function () {
                 console.log("Dropdown changed, filtering neighborhood");
                 filterMapByNeighborhood();
             });
