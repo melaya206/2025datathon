@@ -9,11 +9,6 @@
     <!-- Link to the external libraries -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
-    <!-- Link to the external JavaScript file -->
-    <script src="scripts/load-data.js"></script>
-    <script src="scripts/distribution-by-dept.js"></script>
-    <script src="scripts/searchable-dropdown.js"></script>
-    <script src="scripts/distribution-by-area.js"></script>
     <!-- Leaflet CSS and JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -26,6 +21,11 @@
     <!-- Choices.js for searchable dropdown -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/styles/choices.min.css">
     <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js"></script>
+    <!-- Link to the external JavaScript file -->
+    <script src="scripts/searchable-dropdown.js"></script>
+    <script src="scripts/load-data.js"></script>
+    <script src="scripts/distribution-by-dept.js"></script>
+    <script src="scripts/distribution-by-area.js"></script>
     
     <!-- Custom styles to fix z-index issues with Choices.js -->
     <style>
@@ -121,27 +121,98 @@
                 <div class="filter-container">
                     <label for="request-neighborhood-filter">Filter by neighborhood: </label>
                     <select id="request-neighborhood-filter" class="filter-dropdown">
-                        <option value="all">All neighborhoods</option>
-                        <option value="Downtown">Downtown</option>
-                        <option value="Capitol Hill">Capitol Hill</option>
-                        <option value="Ballard">Ballard</option>
-                        <option value="Queen Anne">Queen Anne</option>
-                        <option value="University District">University District</option>
-                        <option value="Fremont">Fremont</option>
-                        <option value="West Seattle">West Seattle</option>
-                        <option value="Central District">Central District</option>
-                        <option value="Rainier Valley">Rainier Valley</option>
-                        <option value="Beacon Hill">Beacon Hill</option>
-                        <option value="Greenwood">Greenwood</option>
-                        <option value="Wallingford">Wallingford</option>
-                        <option value="Northgate">Northgate</option>
-                        <option value="Columbia City">Columbia City</option>
-                        <option value="South Lake Union">South Lake Union</option>
-                        <option value="Magnolia">Magnolia</option>
-                        <option value="Green Lake">Green Lake</option>
-                        <option value="Ravenna">Ravenna</option>
-                        <option value="Belltown">Belltown</option>
-                        <option value="International District">International District</option>
+                        <option value="ALL.csv">ALL NEIGHBORHOODS</option>
+                        <option value="BITTER_LAKE.csv">BITTER LAKE</option>
+                        <option value="NORTH_BEACON_HILL.csv">NORTH BEACON HILL</option>
+                        <option value="INDUSTRIAL_DISTRICT.csv">INDUSTRIAL DISTRICT</option>
+                        <option value="FIRST_HILL.csv">FIRST HILL</option>
+                        <option value="ROOSEVELT.csv">ROOSEVELT</option>
+                        <option value="WINDERMERE.csv">WINDERMERE</option>
+                        <option value="COLUMBIA_CITY.csv">COLUMBIA CITY</option>
+                        <option value="PINEHURST.csv">PINEHURST</option>
+                        <option value="INTERBAY.csv">INTERBAY</option>
+                        <option value="GATEWOOD.csv">GATEWOOD</option>
+                        <option value="RAINIER_BEACH.csv">RAINIER BEACH</option>
+                        <option value="EAST_QUEEN_ANNE.csv">EAST QUEEN ANNE</option>
+                        <option value="LOWER_QUEEN_ANNE.csv">LOWER QUEEN ANNE</option>
+                        <option value="HALLER_LAKE.csv">HALLER LAKE</option>
+                        <option value="SOUTH_LAKE_UNION.csv">SOUTH LAKE UNION</option>
+                        <option value="MID-BEACON_HILL.csv">MID-BEACON HILL</option>
+                        <option value="BRIGHTON.csv">BRIGHTON</option>
+                        <option value="UNIVERSITY_DISTRICT.csv">UNIVERSITY DISTRICT</option>
+                        <option value="NORTH_QUEEN_ANNE.csv">NORTH QUEEN ANNE</option>
+                        <option value="MEADOWBROOK.csv">MEADOWBROOK</option>
+                        <option value="VICTORY_HEIGHTS.csv">VICTORY HEIGHTS</option>
+                        <option value="ATLANTIC.csv">ATLANTIC</option>
+                        <option value="NORTH_ADMIRAL.csv">NORTH ADMIRAL</option>
+                        <option value="FAUNTLEROY.csv">FAUNTLEROY</option>
+                        <option value="WEDGWOOD.csv">WEDGWOOD</option>
+                        <option value="CENTRAL_BUSINESS_DISTRICT.csv">CENTRAL BUSINESS DISTRICT</option>
+                        <option value="GREENWOOD.csv">GREENWOOD</option>
+                        <option value="MANN.csv">MANN</option>
+                        <option value="SOUTHEAST_MAGNOLIA.csv">SOUTHEAST MAGNOLIA</option>
+                        <option value="ADAMS.csv">ADAMS</option>
+                        <option value="FAIRMOUNT_PARK.csv">FAIRMOUNT PARK</option>
+                        <option value="HARBOR_ISLAND.csv">HARBOR ISLAND</option>
+                        <option value="MATTHEWS_BEACH.csv">MATTHEWS BEACH</option>
+                        <option value="BROADWAY.csv">BROADWAY</option>
+                        <option value="STEVENS.csv">STEVENS</option>
+                        <option value="NORTH_COLLEGE_PARK.csv">NORTH COLLEGE PARK</option>
+                        <option value="NORTH_DELRIDGE.csv">NORTH DELRIDGE</option>
+                        <option value="MOUNT_BAKER.csv">MOUNT BAKER</option>
+                        <option value="WALLINGFORD.csv">WALLINGFORD</option>
+                        <option value="MADISON_PARK.csv">MADISON PARK</option>
+                        <option value="HIGHLAND_PARK.csv">HIGHLAND PARK</option>
+                        <option value="FREMONT.csv">FREMONT</option>
+                        <option value="BELLTOWN.csv">BELLTOWN</option>
+                        <option value="WEST_QUEEN_ANNE.csv">WEST QUEEN ANNE</option>
+                        <option value="SEWARD_PARK.csv">SEWARD PARK</option>
+                        <option value="MAPLE_LEAF.csv">MAPLE LEAF</option>
+                        <option value="GREEN_LAKE.csv">GREEN LAKE</option>
+                        <option value="DUNLAP.csv">DUNLAP</option>
+                        <option value="CEDAR_PARK.csv">CEDAR PARK</option>
+                        <option value="PIONEER_SQUARE.csv">PIONEER SQUARE</option>
+                        <option value="MINOR.csv">MINOR</option>
+                        <option value="RAVENNA.csv">RAVENNA</option>
+                        <option value="BROADVIEW.csv">BROADVIEW</option>
+                        <option value="SOUTH_BEACON_HILL.csv">SOUTH BEACON HILL</option>
+                        <option value="LOYAL_HEIGHTS.csv">LOYAL HEIGHTS</option>
+                        <option value="LESCHI.csv">LESCHI</option>
+                        <option value="MONTLAKE.csv">MONTLAKE</option>
+                        <option value="WHITTIER_HEIGHTS.csv">WHITTIER HEIGHTS</option>
+                        <option value="MADRONA.csv">MADRONA</option>
+                        <option value="WEST_WOODLAND.csv">WEST WOODLAND</option>
+                        <option value="SUNSET_HILL.csv">SUNSET HILL</option>
+                        <option value="HIGH_POINT.csv">HIGH POINT</option>
+                        <option value="BRYANT.csv">BRYANT</option>
+                        <option value="OLYMPIC_HILLS.csv">OLYMPIC HILLS</option>
+                        <option value="CROWN_HILL.csv">CROWN HILL</option>
+                        <option value="PHINNEY_RIDGE.csv">PHINNEY RIDGE</option>
+                        <option value="GEORGETOWN.csv">GEORGETOWN</option>
+                        <option value="LAWTON_PARK.csv">LAWTON PARK</option>
+                        <option value="RIVERVIEW.csv">RIVERVIEW</option>
+                        <option value="LAURELHURST.csv">LAURELHURST</option>
+                        <option value="PIKE-MARKET.csv">PIKE-MARKET</option>
+                        <option value="PORTAGE_BAY.csv">PORTAGE BAY</option>
+                        <option value="EASTLAKE.csv">EASTLAKE</option>
+                        <option value="VIEW_RIDGE.csv">VIEW RIDGE</option>
+                        <option value="BRIARCLIFF.csv">BRIARCLIFF</option>
+                        <option value="SOUTH_PARK.csv">SOUTH PARK</option>
+                        <option value="SAND_POINT.csv">SAND POINT</option>
+                        <option value="NORTH_BEACH/BLUE_RIDGE.csv">NORTH BEACH/BLUE RIDGE</option>
+                        <option value="SEAVIEW.csv">SEAVIEW</option>
+                        <option value="INTERNATIONAL_DISTRICT.csv">INTERNATIONAL DISTRICT</option>
+                        <option value="YESLER_TERRACE.csv">YESLER TERRACE</option>
+                        <option value="SOUTH_DELRIDGE.csv">SOUTH DELRIDGE</option>
+                        <option value="ALKI.csv">ALKI</option>
+                        <option value="HOLLY_PARK.csv">HOLLY PARK</option>
+                        <option value="ARBOR_HEIGHTS.csv">ARBOR HEIGHTS</option>
+                        <option value="HARRISON/DENNY-BLAINE.csv">HARRISON/DENNY-BLAINE</option>
+                        <option value="RAINIER_VIEW.csv">RAINIER VIEW</option>
+                        <option value="ROXHILL.csv">ROXHILL</option>
+                        <option value="GENESEE.csv">GENESEE</option>
+                        <option value="WESTLAKE.csv">WESTLAKE</option>
+                        <option value="OOO.csv">OOO</option>
                     </select>
                 </div>
                 

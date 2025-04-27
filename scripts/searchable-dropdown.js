@@ -31,10 +31,20 @@ function initSearchableDropdown(elementId, data, fieldName, onChangeCallback) {
         console.log(`Found ${uniqueValues.length} unique values for ${fieldName}`);
         
         // Prepare choices options
-        const choicesOptions = [
-            { value: 'all', label: 'All neighborhoods' },
-            ...uniqueValues.map(value => ({ value: value, label: value }))
-        ];
+        const choicesOptions = [];
+        
+        // Check if the dropdown already has an "All neighborhoods" option
+        const hasAllOption = Array.from(dropdown.options).some(option => 
+            option.value === 'all' && (option.text === 'All neighborhoods' || option.text === 'All Request Types')
+        );
+        
+        // Only add the "All" option if it doesn't already exist
+        if (!hasAllOption) {
+            choicesOptions.push({ value: 'all', label: 'All neighborhoods' });
+        }
+        
+        // Add the unique values
+        choicesOptions.push(...uniqueValues.map(value => ({ value: value, label: value })));
         
         // Destroy existing Choices instance if it exists
         if (choicesInstance) {
@@ -53,7 +63,9 @@ function initSearchableDropdown(elementId, data, fieldName, onChangeCallback) {
             placeholderValue: 'Select a neighborhood',
             classNames: {
                 containerOuter: 'choices filter-dropdown'
-            }
+            },
+            removeItemButton: false,
+            allowHTML: false
         });
         
         // Add event listener for when a choice is made
