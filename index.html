@@ -12,6 +12,7 @@
     <!-- Link to the external JavaScript file -->
     <script src="scripts/load-data.js"></script>
     <script src="scripts/distribution-by-dept.js"></script>
+    <script src="scripts/searchable-dropdown.js"></script>
     <script src="scripts/distribution-by-area.js"></script>
     <!-- Leaflet CSS and JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -22,6 +23,29 @@
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <!-- Leaflet Heat Plugin -->
     <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    <!-- Choices.js for searchable dropdown -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/styles/choices.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js"></script>
+    
+    <!-- Custom styles to fix z-index issues with Choices.js -->
+    <style>
+        /* Force header to be above everything */
+        header {
+            position: relative;
+            z-index: 9999 !important;
+        }
+        
+        /* Force Choices.js dropdown to be below header */
+        .choices__list--dropdown {
+            z-index: 5000 !important;
+        }
+        
+        /* Fix for Choices.js dropdown appearing above header */
+        .choices {
+            position: relative;
+            z-index: 5000 !important;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -78,6 +102,60 @@
             <div class="visualization-container">
                 <div class="visualization-title">Geographical Distribution of Service Requests</div>
                 <div class="visualization-description">Heatmap showing the distribution of service requests across Seattle</div>
+                <div class="filter-container">
+                    <label for="request-type-filter">Filter by Request Type: </label>
+                    <select id="request-type-filter" class="filter-dropdown">
+                        <option value="all">All Request Types</option>
+                        <option value="Parking Enforcement">Parking Enforcement</option>
+                        <option value="General Inquiry - City Light">General Inquiry - City Light</option>
+                        <option value="Street Sign and Traffic Signal Maintenance">Street Sign and Traffic Signal Maintenance</option>
+                        <option value="Illegal Dumping / Needles">Illegal Dumping / Needles</option>
+                        <option value="General Inquiry - Police Department">General Inquiry - Police Department</option>
+                        <option value="Streetlight Maintenance">Streetlight Maintenance</option>
+                        <option value="General Inquiry - Customer Service Bureau">General Inquiry - Customer Service Bureau</option>
+                        <option value="Clogged Storm Drain">Clogged Storm Drain</option>
+                        <option value="General Inquiry - Animal Shelter">General Inquiry - Animal Shelter</option>
+                        <option value="Pothole">Pothole</option>
+                        <option value="Overgrown Vegetation">Overgrown Vegetation</option>
+                        <option value="Graffiti">Graffiti</option>
+                        <option value="Dead Animal">Dead Animal</option>
+                        <option value="Business Related Complaint">Business Related Complaint</option>
+                        <option value="Internet/Cable Issue">Internet/Cable Issue</option>
+                        <option value="Damaged Sidewalk">Damaged Sidewalk</option>
+                        <option value="Business Violation of Public Health Requirements">Business Violation of Public Health Requirements</option>
+                        <option value="General Inquiry - Public Utilities">General Inquiry - Public Utilities</option>
+                        <option value="Scooter or Bike Share Issue">Scooter or Bike Share Issue</option>
+                        <option value="General Inquiry - Transportation">General Inquiry - Transportation</option>
+                        <option value="Nightlife Noise Complaint">Nightlife Noise Complaint</option>
+                        <option value="Towing Impound Complaint">Towing Impound Complaint</option>
+                        <option value="Abandoned Vehicle">Abandoned Vehicle</option>
+                        <option value="Animal Noise">Animal Noise</option>
+                        <option value="Seattle Center">Seattle Center</option>
+                        <option value="Taxi, TNC, or Limousine Complaint or Compliment">Taxi, TNC, or Limousine Complaint or Compliment</option>
+                        <option value="Pollution Report Form">Pollution Report Form</option>
+                        <option value="ADA Request (Transportation)">ADA Request (Transportation)</option>
+                        <option value="Wireless or Small Cell Issue">Wireless or Small Cell Issue</option>
+                        <option value="Safe Routes to School">Safe Routes to School</option>
+                        <option value="Traffic Calming">Traffic Calming</option>
+                        <option value="Public Garage or Parking Lot Complaint">Public Garage or Parking Lot Complaint</option>
+                        <option value="Parks and Recreation Maintenance">Parks and Recreation Maintenance</option>
+                        <option value="Public Litter and Recycling Cans">Public Litter and Recycling Cans</option>
+                        <option value="Public Utilities Direct Mail Opt Out">Public Utilities Direct Mail Opt Out</option>
+                        <option value="Towing Complaint - Public Impound">Towing Complaint - Public Impound</option>
+                        <option value="Abandoned Vehicle/72hr Parking Ordinance">Abandoned Vehicle/72hr Parking Ordinance</option>
+                        <option value="Unauthorized Encampment">Unauthorized Encampment</option>
+                        <option value="Feedback about the Customer Service Requests Portal">Feedback about the Customer Service Requests Portal</option>
+                        <option value="Feedback about the Find It, Fix It mobile app">Feedback about the Find It, Fix It mobile app</option>
+                        <option value="Found a Pet">Found a Pet</option>
+                        <option value="Lost a Pet">Lost a Pet</option>
+                        <option value="Street Sign Maintenance">Street Sign Maintenance</option>
+                        <option value="Traffic Signal Maintenance">Traffic Signal Maintenance</option>
+                        <option value="Snow and Ice">Snow and Ice</option>
+                        <option value="Nuisance dogs in a park">Nuisance dogs in a park</option>
+                        <option value="Bicycle Facility Maintenance">Bicycle Facility Maintenance</option>
+                    </select>
+                </div>
+                
                 <div class="map-container" style="position: relative; height: 500px; width: 100%;">
                     <div id="map-loading-indicator" class="loading-indicator" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; background: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: center;">
                         Initializing map...
@@ -135,5 +213,26 @@
             <p class="copyright"> Ctrl+Alt+Elite 2025. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Initialize Choices.js -->
+    <script>
+        // Initialize Choices.js when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.getElementById('request-type-filter');
+            if (dropdown) {
+                try {
+                    const choices = new Choices(dropdown, {
+                        searchEnabled: true,
+                        searchPlaceholderValue: 'Search request types...',
+                        itemSelectText: '',
+                        position: 'bottom'
+                    });
+                    console.log('Choices.js initialized successfully');
+                } catch (error) {
+                    console.error('Error initializing Choices.js:', error);
+                }
+            }
+        });
+    </script>
 </body>
 </html>

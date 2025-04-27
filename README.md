@@ -12,7 +12,7 @@ Download the repository via the GitHub web interface or by cloning:
 
 ## Usage
 
-View the online version of this website at https://students.washington.edu/imotta/
+View the live demo at https://students.washington.edu/imotta/
     
 ## Contact the Authors
 
