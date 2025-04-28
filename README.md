@@ -10,7 +10,7 @@ Download the repository via the GitHub web interface or by cloning:
 
 Launch the website by opening the `index.html` file in a web browser.
 
-Or view the live demo at https://students.washington.edu/imotta/
+Or view the live demo at [https://seastats.report/](https://seastats.report/)
     
 ## Contact the Authors
 
