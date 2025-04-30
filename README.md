@@ -4,7 +4,7 @@
 
 Download the repository via the GitHub web interface or by cloning:
 
-`git clone https://github.com/melaya206/2025datathon/tree/main`
+`git clone https://github.com/melaya206/2025datathon.git`
 
 ## Usage
 

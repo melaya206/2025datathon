@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -122,10 +121,11 @@
 </head>
 
 <body>
+    <div id="top"></div>
     <!-- Page navigation -->
     <nav class="page-navigation">
         <div class="container">
-            <img class="logo" src="resources/ctrl+alt+elite.png" alt="Logo">
+            <img class="logo" onclick="document.getElementById('top').scrollIntoView({behavior: 'smooth'})" src="resources/ctrl+alt+elite.png" alt="Logo">
             <div class="nav-buttons-container">
                 <button class="nav-button"
                     onclick="document.getElementById('introduction').scrollIntoView({behavior: 'smooth'})">Introduction</button>

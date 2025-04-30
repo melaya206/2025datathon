@@ -153,13 +153,22 @@ function createDepartment3DPlot(data) {
         t: 50,
         pad: 0
       },
-      showlegend: true,
       legend: {
         x: 1,
         y: 0.5
       },
       height: 600
     };
+
+    // Responsive: hide legend and adjust zoom/margins if screen width <= 1200px
+    const isMobile = window.innerWidth <= 1200;
+    layout.showlegend = !isMobile;
+    if (isMobile) {
+      // Zoom out more by adjusting camera position
+      layout.scene.camera = {
+        eye: { x: 2.5, y: 2.5, z: 2.5 }
+      };
+    }
 
     // Create the plot
     Plotly.newPlot('3d-line-plot', traces, layout, { responsive: true });
