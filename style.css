@@ -99,6 +99,10 @@ body {
         align-items: center;
     }
 
+    .container section {
+        scroll-margin-top: 175px;
+    }
+
     .logo {
         margin-bottom: 0px;
         padding: 10px 0 10px 0px;
