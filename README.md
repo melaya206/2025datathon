@@ -1,8 +1,12 @@
-# DubsTech Datathon 2025 | Ctrl+Alt+Elite | *Earned Honarable Mention*
+# DubsTech Datathon 2025 | Ctrl+Alt+Elite | 
+
+*Earned Honarable Mention*
 
 ## About
 
 This project was created for the DubsTech Datathon 2025 in a 48-hour sprint to clean, analyze, visualize, and generate insights from City of Seattle service requests data.
+
+See the report: https://melaya206.github.io/2025datathon/
     
 ## Contact the Authors
 
