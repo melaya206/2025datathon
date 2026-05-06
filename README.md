@@ -1,16 +1,8 @@
-# DubsTech Datathon 2025 | Ctrl+Alt+Elite
+# DubsTech Datathon 2025 | Ctrl+Alt+Elite | *Earned Honarable Mention*
 
-## Getting Started
+## About
 
-Download the repository via the GitHub web interface or by cloning:
-
-`git clone https://github.com/melaya206/2025datathon.git`
-
-## Usage
-
-Launch the website by opening the `index.html` file in a web browser.
-
-Or view the live demo at [https://seastats.report/](https://seastats.report/)
+This project was created for the DubsTech Datathon 2025 in a 48-hour sprint to clean, analyze, visualize, and generate insights from City of Seattle service requests data.
     
 ## Contact the Authors
 
@@ -22,7 +14,7 @@ Or view the live demo at [https://seastats.report/](https://seastats.report/)
 
 - GitHub: [https://github.com/kylertran](https://github.com/kylertran)
 
-**Melaya Madrid**
+**Melaya La Madrid**
 
 - Email: [lamamel@uw.edu](mailto:lamamel@uw.edu)
 
